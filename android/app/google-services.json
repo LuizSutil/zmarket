@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "10376337254",
+    "project_id": "zmarket-2999f",
+    "storage_bucket": "zmarket-2999f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10376337254:android:ee6e32cb00a10457361aa7",
+        "android_client_info": {
+          "package_name": "com.example.tutorial_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10376337254-br5q17hjut2h2r97scnj37ngg2gusmhr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tutorial_1",
+            "certificate_hash": "2893851ce35c3b2c3c83d129031e71cc5e386d56"
+          }
+        },
+        {
+          "client_id": "10376337254-sqgd6nbhdgdm81m69qolff23lgnt6jta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQcfEsb-zQCIiR1uvPKQI-p0eJ6UdLLi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10376337254-sqgd6nbhdgdm81m69qolff23lgnt6jta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
