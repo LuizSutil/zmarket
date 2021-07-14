@@ -12,7 +12,7 @@ class StreamerPage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
-              return MyHomePage('luiz');
+              return MyHomePage('blabla');
             } else if (snapshot.hasError) {
               return Center(child: Text('Something went wrong!'));
             } else {

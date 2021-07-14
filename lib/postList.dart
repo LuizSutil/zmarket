@@ -29,6 +29,10 @@ class _PostListState extends State<PostList> {
                   title: Text(post.body), subtitle: Text(post.author))),
           Row(
             children: <Widget>[
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(post.url),
+              ),
               Container(
                   child: Text(post.likes.toString(),
                       style: TextStyle(fontSize: 20)),
