@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'auth.dart';
 
 class LoginPage extends StatelessWidget {
@@ -20,13 +21,13 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   TextEditingController controller = new TextEditingController();
 
-  void click() {
-    signInWithGoogle();
-  }
-
   Widget googleLoginButton() {
     return OutlinedButton(
-        onPressed: this.click,
+        onPressed: () {
+          final provider =
+              Provider.of<GoogleSignInProvider>(context, listen: false);
+          provider.googleLogin();
+        },
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
