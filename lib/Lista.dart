@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ListaCompras extends StatefulWidget {
+  final String nomeLista;
+  ListaCompras(this.nomeLista);
+
   @override
   _ListaComprasState createState() => _ListaComprasState();
 }
@@ -18,7 +21,7 @@ class _ListaComprasState extends State<ListaCompras> {
                 Padding(
                     padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
                     child:
-                        Text('Lista Semanal', style: TextStyle(fontSize: 20))),
+                        Text(widget.nomeLista, style: TextStyle(fontSize: 20))),
                 Padding(
                     padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
                     child: Column(

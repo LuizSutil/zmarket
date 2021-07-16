@@ -32,28 +32,29 @@ class _MyHomePageState extends State<MyHomePage> {
             body: Column(children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
-                child: ListaCompras(),
+                child: ListaCompras('Lista Semanal'),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                child: ListaCompras(),
+                child: ListaCompras('Picnic'),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                child: aaa(),
+                child: Aaa('Festa'),
               ),
             ])));
   }
 }
 
-class aaa extends StatefulWidget {
-  const aaa({Key? key}) : super(key: key);
+class Aaa extends StatefulWidget {
+  final String listName;
+  Aaa(this.listName);
 
   @override
-  _aaaState createState() => _aaaState();
+  _AaaState createState() => _AaaState();
 }
 
-class _aaaState extends State<aaa> {
+class _AaaState extends State<Aaa> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -62,7 +63,7 @@ class _aaaState extends State<aaa> {
             onTap: () {
               print('Card tapped.');
             },
-            child: ListaCompras()),
+            child: ListaCompras(widget.listName)),
       ),
     );
   }
