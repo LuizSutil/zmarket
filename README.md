@@ -1,6 +1,6 @@
-# tutorial_1
+# Zmarket MVP app
 
-A new Flutter project.
+A MVP for the Ztelluz team to show to possible investors.
 
 ## Getting Started
 
