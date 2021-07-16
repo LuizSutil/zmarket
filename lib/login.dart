@@ -6,19 +6,27 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Ztelluz'),
-        ),
-        body: Body());
+        backgroundColor: Color.fromRGBO(35, 8, 56, 1),
+        body: Column(
+          children: [
+            Padding(
+                padding: EdgeInsets.fromLTRB(0, 250, 0, 200),
+                child: Image(
+                  image: AssetImage('assets/ztelluz_logo.png'),
+                  height: 95,
+                )),
+            GoogleButton()
+          ],
+        ));
   }
 }
 
-class Body extends StatefulWidget {
+class GoogleButton extends StatefulWidget {
   @override
-  _BodyState createState() => _BodyState();
+  _GoogleButtonState createState() => _GoogleButtonState();
 }
 
-class _BodyState extends State<Body> {
+class _GoogleButtonState extends State<GoogleButton> {
   TextEditingController controller = new TextEditingController();
 
   Widget googleLoginButton() {
@@ -29,23 +37,21 @@ class _BodyState extends State<Body> {
           provider.googleLogin();
         },
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0)))),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Image(
                   image: AssetImage('assets/google_logo.png'),
-                  height: 35,
+                  height: 20,
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child: Text('Sign in with google',
-                        style: TextStyle(color: Colors.grey, fontSize: 25)))
+                    child: Text('Sign in with Google',
+                        style: TextStyle(color: Colors.black, fontSize: 20)))
               ]),
         ));
   }
