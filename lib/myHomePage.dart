@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial_1/auth.dart';
-import 'Lista.dart';
-import 'package:provider/provider.dart';
+import 'package:tutorial_1/listinhaModel.dart';
+import 'appbar.dart';
+import 'ListDisplayer.dart';
+import 'categorias.dart';
 
 class MyHomePage extends StatefulWidget {
   final user = FirebaseAuth.instance.currentUser!;
@@ -12,59 +13,53 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var posts = {
+    'lista1': {
+      'nome': 'Lista Semanal',
+      'cart': ['Coquinha', 'Pizza da Sadia', 'Puta merda deu certo']
+    },
+    'lista2': {
+      'nome': 'Festa',
+      'cart': ['"Sal"', 'Coquinha', 'Gudang(importado)']
+    },
+    'lista': {
+      'nome': 'Picnic',
+      'cart': ['"Vinho"', 'Queijo', 'Baguette']
+    }
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Ztelluz Market '),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  final provider =
-                      Provider.of<GoogleSignInProvider>(context, listen: false);
-                  provider.logout();
-                },
-                icon: Icon(Icons.logout))
-          ],
+      backgroundColor: Color.fromRGBO(35, 8, 56, 1),
+      body: CustomScrollView(slivers: [
+        Zappbar(),
+        ListDisplay(getAllListinhas(posts)),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          IconButton(
+              alignment: Alignment.centerRight,
+              iconSize: 70,
+              onPressed: () => {},
+              icon: Icon(
+                Icons.add_circle,
+                color: Color.fromRGBO(31, 192, 5, 1),
+              )),
+        ])),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          Divider(
+            height: 20,
+            thickness: 5,
+            indent: 20,
+            endIndent: 20,
+          ),
+        ])),
+        SliverPadding(
+          padding: const EdgeInsets.all(20),
+          sliver: Categorias(),
         ),
-        body: Scaffold(
-            backgroundColor: Color.fromRGBO(35, 8, 56, 1),
-            body: Column(children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
-                child: ListaCompras('Lista Semanal'),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                child: ListaCompras('Picnic'),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                child: Aaa('Festa'),
-              ),
-            ])));
-  }
-}
-
-class Aaa extends StatefulWidget {
-  final String listName;
-  Aaa(this.listName);
-
-  @override
-  _AaaState createState() => _AaaState();
-}
-
-class _AaaState extends State<Aaa> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: InkWell(
-            onTap: () {
-              print('Card tapped.');
-            },
-            child: ListaCompras(widget.listName)),
-      ),
+      ]),
     );
   }
 }
