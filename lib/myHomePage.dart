@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     },
     'lista': {
       'nome': 'Picnic',
-      'cart': ['"Vinho"', 'Queijo', 'Baguette']
+      'cart': ['Vinho', 'Queijo', 'Baguette']
     }
   };
 
@@ -37,14 +37,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ListDisplay(getAllListinhas(posts)),
         SliverList(
             delegate: SliverChildListDelegate([
-          IconButton(
+          Align(
               alignment: Alignment.centerRight,
-              iconSize: 70,
-              onPressed: () => {},
-              icon: Icon(
-                Icons.add_circle,
-                color: Color.fromRGBO(31, 192, 5, 1),
-              )),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: Color.fromRGBO(31, 192, 5, 1),
+                  textColor: Colors.white,
+                  child: Icon(
+                    Icons.add,
+                    size: 50,
+                  ),
+                  shape: CircleBorder(),
+                ),
+              ))
         ])),
         SliverList(
             delegate: SliverChildListDelegate([

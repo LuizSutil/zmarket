@@ -27,61 +27,63 @@ class _ListaComprasState extends State<ListaCompras> {
                   Padding(
                       padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
                       child: Text(widget.nomeLista,
-                          style: TextStyle(fontSize: 20))),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purple))),
                   Padding(
                       padding: EdgeInsets.fromLTRB(25, 10, 0, 0),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(widget.produtos[0],
-                                style: TextStyle(fontSize: 13)),
+                                style: TextStyle(fontSize: 16)),
                             Text(widget.produtos[1],
-                                style: TextStyle(fontSize: 13)),
+                                style: TextStyle(fontSize: 16)),
                             Text(widget.produtos[2],
-                                style: TextStyle(fontSize: 13)),
-                            Text("..."),
+                                style: TextStyle(fontSize: 16)),
+                            Padding(
+                              child: Text("..."),
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            )
                           ]))
                 ],
               ),
             ),
             Column(children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 20, 10),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.black,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: Size.zero,
-                    padding: EdgeInsets.zero,
-                  ),
-                  child: Text('Edit'),
+                  padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
+                  child: MaterialButton(
+                    onPressed: () => {},
+                    color: Color.fromRGBO(56, 37, 109, 1),
+                    textColor: Colors.white,
+                    child: Icon(
+                      Icons.edit,
+                      size: 30,
+                    ),
+                  )),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                child: MaterialButton(
                   onPressed: () => {},
+                  color: Color.fromRGBO(56, 37, 109, 1),
+                  textColor: Colors.white,
+                  child: Icon(
+                    Icons.delete,
+                    size: 30,
+                  ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 20, 10),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.black,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: Size.zero,
-                    padding: EdgeInsets.zero,
-                  ),
-                  child: Text('Delete'),
+                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                child: MaterialButton(
                   onPressed: () => {},
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 20, 10),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.black,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: Size.zero,
-                    padding: EdgeInsets.zero,
+                  color: Color.fromRGBO(56, 37, 109, 1),
+                  textColor: Colors.white,
+                  child: Icon(
+                    Icons.add_shopping_cart,
+                    size: 30,
                   ),
-                  child: Text('View/Use'),
-                  onPressed: () => {},
                 ),
               ),
             ])
