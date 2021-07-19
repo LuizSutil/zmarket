@@ -20,9 +20,15 @@ class _ListDisplayState extends State<ListDisplay> {
           return Padding(
               padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: ListaCompras(widget.lista[index].nome, [
-                widget.lista[index].cart[0],
-                widget.lista[index].cart[1],
-                widget.lista[index].cart[2]
+                widget.lista[index].cart.length > 0
+                    ? widget.lista[index].cart[0]
+                    : '',
+                widget.lista[index].cart.length > 1
+                    ? widget.lista[index].cart[1]
+                    : '',
+                widget.lista[index].cart.length > 2
+                    ? widget.lista[index].cart[2]
+                    : ''
               ]));
         },
         childCount: widget.lista.length,

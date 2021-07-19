@@ -36,11 +36,20 @@ class _ListaComprasState extends State<ListaCompras> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(widget.produtos[0],
+                            Text(
+                                widget.produtos.length >= 1
+                                    ? widget.produtos[0]
+                                    : '',
                                 style: TextStyle(fontSize: 16)),
-                            Text(widget.produtos[1],
+                            Text(
+                                widget.produtos.length >= 2
+                                    ? widget.produtos[1]
+                                    : '',
                                 style: TextStyle(fontSize: 16)),
-                            Text(widget.produtos[2],
+                            Text(
+                                widget.produtos.length >= 3
+                                    ? widget.produtos[2]
+                                    : '',
                                 style: TextStyle(fontSize: 16)),
                             Padding(
                               child: Text("..."),

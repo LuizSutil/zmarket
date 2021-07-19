@@ -13,6 +13,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var text = '';
+
   var posts = {
     'lista1': {
       'nome': 'Lista Semanal',
@@ -22,11 +24,63 @@ class _MyHomePageState extends State<MyHomePage> {
       'nome': 'Festa',
       'cart': ['"Sal"', 'Coquinha', 'Gudang(importado)']
     },
-    'lista': {
+    'lista3': {
       'nome': 'Picnic',
-      'cart': ['Vinho', 'Queijo', 'Baguette']
+      'cart': [
+        'Vinho',
+        'Queijo',
+      ]
     }
   };
+
+  Future _showCriarLista() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          insetPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          title: new Text('Criar Lista Nova'),
+          children: <Widget>[
+            Padding(
+              child: TextField(
+                onChanged: (texto) {
+                  text = texto;
+                },
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Nome da lista',
+                    labelStyle: TextStyle(color: Color.fromRGBO(35, 8, 56, 1))),
+              ),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: MaterialButton(
+                onPressed: () {
+                  if (text != '') {
+                    setState(() {
+                      posts['$text'] = {
+                        'nome': '$text',
+                        'cart': ['blabla', 'blablabla', 'balsdbfoa']
+                      };
+                      Navigator.pop(context);
+                    });
+                  }
+                },
+                color: Color.fromRGBO(31, 192, 5, 1),
+                textColor: Colors.white,
+                child: Icon(
+                  Icons.arrow_forward,
+                  size: 20,
+                ),
+                shape: CircleBorder(),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showCriarLista();
+                  },
                   color: Color.fromRGBO(31, 192, 5, 1),
                   textColor: Colors.white,
                   child: Icon(
