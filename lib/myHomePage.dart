@@ -68,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Nome da lista',
-                    labelStyle: TextStyle(color: Color.fromRGBO(35, 8, 56, 1))),
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor)),
               ),
               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
             ),
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   }
                 },
-                color: Color.fromRGBO(31, 192, 5, 1),
+                color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 child: Icon(
                   Icons.arrow_forward,
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(35, 8, 56, 1),
+      backgroundColor: Theme.of(context).primaryColor,
       body: CustomScrollView(slivers: [
         Zappbar(),
         ListDisplay(getAllListinhas(posts)),

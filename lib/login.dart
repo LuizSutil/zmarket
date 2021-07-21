@@ -6,9 +6,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(35, 8, 56, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Column(
           children: [
+            //change this to an align later
             Padding(
                 padding: EdgeInsets.fromLTRB(0, 250, 0, 200),
                 child: Image(

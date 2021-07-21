@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         title: 'Z_Market',
-        theme: ThemeData(primaryColor: Color.fromRGBO(35, 8, 56, 1)),
+        theme: ThemeData(
+            primaryColor: Color.fromRGBO(33, 20, 68, 1),
+            accentColor: Colors.green),
         home: StreamerPage(),
       ));
 }

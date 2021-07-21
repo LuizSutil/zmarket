@@ -69,7 +69,7 @@ class _ListaComprasState extends State<ListaCompras> {
                   padding: EdgeInsets.fromLTRB(0, 10, 20, 0),
                   child: MaterialButton(
                     onPressed: () => {},
-                    color: Color.fromRGBO(56, 37, 109, 1),
+                    color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
                     child: Icon(
                       Icons.edit,
@@ -80,7 +80,7 @@ class _ListaComprasState extends State<ListaCompras> {
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                 child: MaterialButton(
                   onPressed: () => {},
-                  color: Color.fromRGBO(56, 37, 109, 1),
+                  color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   child: Icon(
                     Icons.delete,
@@ -92,7 +92,7 @@ class _ListaComprasState extends State<ListaCompras> {
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                 child: MaterialButton(
                   onPressed: () => {},
-                  color: Color.fromRGBO(56, 37, 109, 1),
+                  color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   child: Icon(
                     Icons.add_shopping_cart,
