@@ -14,7 +14,6 @@ class _ZappbarState extends State<Zappbar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 80,
       title: Text('Ztelluz Market'),
       actions: [
         Row(

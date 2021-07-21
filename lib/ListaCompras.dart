@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'individualLista.dart';
 
 class ListaCompras extends StatefulWidget {
   final String nomeLista;
-  final List<String> produtos;
+  final List<dynamic> produtos;
 
   ListaCompras(this.nomeLista, this.produtos);
 
@@ -17,7 +18,11 @@ class _ListaComprasState extends State<ListaCompras> {
       child: InkWell(
           splashColor: Colors.purple,
           onTap: () {
-            print('Card tapped.');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => IndividualLista(
+                        nomeLista: widget.nomeLista, cart: widget.produtos)));
           },
           child: Row(children: [
             Expanded(

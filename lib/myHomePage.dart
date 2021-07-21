@@ -18,11 +18,30 @@ class _MyHomePageState extends State<MyHomePage> {
   var posts = {
     'lista1': {
       'nome': 'Lista Semanal',
-      'cart': ['Coquinha', 'Pizza da Sadia', 'Puta merda deu certo']
+      'cart': [
+        'Yogurte',
+        'Detergente',
+        'Pão',
+        'Tomate',
+        'Banana',
+        'Queijo',
+        'Presunto'
+      ]
     },
     'lista2': {
       'nome': 'Festa',
-      'cart': ['"Sal"', 'Coquinha', 'Gudang(importado)']
+      'cart': [
+        '"Sal"',
+        'Coquinha',
+        'Gudang(importado)',
+        'Pizza da Sadia',
+        'abluble',
+        'zzz',
+        'qweqwe',
+        'doinsodf',
+        'pppppp',
+        'dkfoaskf'
+      ]
     },
     'lista3': {
       'nome': 'Picnic',
@@ -119,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ])),
         SliverPadding(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           sliver: Categorias(),
         ),
       ]),

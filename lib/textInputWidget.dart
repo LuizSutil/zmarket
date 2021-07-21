@@ -30,7 +30,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
         controller: this.controller,
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.message),
-            labelText: "Add produto",
+            labelText: "Search produto",
             suffixIcon: IconButton(
               icon: Icon(Icons.send),
               splashColor: Colors.blue,
