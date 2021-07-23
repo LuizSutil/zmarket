@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial_1/appbar.dart';
+import 'appbar.dart';
 import 'categorias.dart';
 
 class IndividualLista extends StatefulWidget {
@@ -113,7 +113,7 @@ class Item extends StatefulWidget {
 }
 
 class _ItemState extends State<Item> {
-  var quantity = 3;
+  var quantity = 1;
 
   @override
   Widget build(BuildContext context) {

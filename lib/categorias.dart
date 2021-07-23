@@ -22,8 +22,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.adb_sharp,
+            Icons.local_bar,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -33,8 +34,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.app_settings_alt,
+            Icons.local_cafe,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -44,8 +46,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.add_link,
+            Icons.local_dining,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -55,8 +58,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.tablet_android_rounded,
+            Icons.outdoor_grill,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -66,8 +70,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.timer_off,
+            Icons.wine_bar,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -77,8 +82,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.photo_camera_front_rounded,
+            Icons.sanitizer,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -88,8 +94,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.app_settings_alt,
+            Icons.savings,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -99,8 +106,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.app_settings_alt,
+            Icons.smoking_rooms,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -110,8 +118,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.app_settings_alt,
+            Icons.sports_bar,
             size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Container(
@@ -121,151 +130,9 @@ class _CategoriasState extends State<Categorias> {
           ),
           padding: const EdgeInsets.all(18),
           child: Icon(
-            Icons.app_settings_alt,
+            Icons.pets,
             size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(235, 235, 235, 1),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Icon(
-            Icons.app_settings_alt,
-            size: 45,
+            color: Theme.of(context).primaryColor,
           ),
         ),
       ],

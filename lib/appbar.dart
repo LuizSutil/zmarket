@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tutorial_1/auth.dart';
+import 'auth.dart';
 
 class Zappbar extends StatefulWidget {
   final user = FirebaseAuth.instance.currentUser!;

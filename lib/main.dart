@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial_1/auth.dart';
+import 'auth.dart';
 import 'package:provider/provider.dart';
 import 'streamer.dart';
 

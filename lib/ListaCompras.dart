@@ -4,17 +4,24 @@ import 'individualLista.dart';
 class ListaCompras extends StatefulWidget {
   final String nomeLista;
   final List<dynamic> produtos;
-
-  ListaCompras(this.nomeLista, this.produtos);
+  final Map<String, Map<String, Object>> posts;
+  final Function callback;
+  ListaCompras(this.nomeLista, this.produtos, this.posts, this.callback);
 
   @override
   _ListaComprasState createState() => _ListaComprasState();
 }
 
 class _ListaComprasState extends State<ListaCompras> {
+  deleteLista() {
+    widget.posts.remove(widget.nomeLista);
+    widget.callback();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Color.fromRGBO(230, 230, 230, 1),
       child: InkWell(
           splashColor: Colors.purple,
           onTap: () {
@@ -57,7 +64,9 @@ class _ListaComprasState extends State<ListaCompras> {
                                     : '',
                                 style: TextStyle(fontSize: 16)),
                             Padding(
-                              child: Text("..."),
+                              child: Text(widget.produtos.length >= 1
+                                  ? "..."
+                                  : 'Add Produtos para visualizar!'),
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                             )
                           ]))
@@ -79,7 +88,7 @@ class _ListaComprasState extends State<ListaCompras> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                 child: MaterialButton(
-                  onPressed: () => {},
+                  onPressed: () => {deleteLista()},
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   child: Icon(

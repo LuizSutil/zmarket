@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial_1/listinhaModel.dart';
+import 'listinhaModel.dart';
 import 'appbar.dart';
 import 'ListDisplayer.dart';
 import 'categorias.dart';
@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = '';
 
   var posts = {
-    'lista1': {
+    'Lista Semanal': {
       'nome': 'Lista Semanal',
       'cart': [
         'Yogurte',
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Presunto'
       ]
     },
-    'lista2': {
+    'Festa': {
       'nome': 'Festa',
       'cart': [
         '"Sal"',
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'dkfoaskf'
       ]
     },
-    'lista3': {
+    'Picnic': {
       'nome': 'Picnic',
       'cart': [
         'Vinho',
@@ -79,10 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   if (text != '') {
                     setState(() {
-                      posts['$text'] = {
-                        'nome': '$text',
-                        'cart': ['blabla', 'blablabla', 'balsdbfoa']
-                      };
+                      posts['$text'] = {'nome': '$text', 'cart': []};
                       Navigator.pop(context);
                     });
                   }
@@ -108,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: CustomScrollView(slivers: [
         Zappbar(),
-        ListDisplay(getAllListinhas(posts)),
+        ListDisplay(getAllListinhas(posts), posts, () => setState(() {})),
         SliverList(
             delegate: SliverChildListDelegate([
           Align(
@@ -132,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SliverList(
             delegate: SliverChildListDelegate([
           Divider(
+            color: Color.fromRGBO(204, 51, 153, 1),
             height: 20,
             thickness: 5,
             indent: 20,
