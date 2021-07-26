@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'appbar.dart';
+import 'cat_box.dart';
+import 'cat_box_model.dart';
 import 'categorias.dart';
 
 class IndividualLista extends StatefulWidget {
@@ -98,7 +100,13 @@ class _IndividualListaState extends State<IndividualLista> {
           ])),
           SliverPadding(
             padding: EdgeInsets.all(20),
-            sliver: Categorias(),
+            sliver: Categorias(
+              catbox: [
+                CatBox(
+                    catboxModel:
+                        CatBoxModel(icon: Icon(Icons.ac_unit), category: 'bla'))
+              ],
+            ),
           ),
         ]));
   }
