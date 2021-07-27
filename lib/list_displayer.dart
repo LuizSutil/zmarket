@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ListaCompras.dart';
-import 'listinhaModel.dart';
+import 'lista_compras.dart';
+import 'listinha_model.dart';
 
 class ListDisplay extends StatefulWidget {
   final List<ListinhaModel> lista;

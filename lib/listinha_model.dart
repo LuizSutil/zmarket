@@ -31,3 +31,14 @@ List<ListinhaModel> getAllListinhas(Map<String, dynamic> data) {
 
   return listinhas;
 }
+
+List<String> getAllListinhaNames(Map<String, dynamic> data) {
+  List<String> listinhas = [];
+
+  data.forEach((key, value) {
+    String listinha = createListinha(value).nome;
+    listinhas.add(listinha);
+  });
+
+  return listinhas;
+}

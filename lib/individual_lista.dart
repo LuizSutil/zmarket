@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'appbar.dart';
-import 'cat_box.dart';
-import 'cat_box_model.dart';
-import 'categorias.dart';
+import 'app_bar.dart';
 
 class IndividualLista extends StatefulWidget {
   final String nomeLista;

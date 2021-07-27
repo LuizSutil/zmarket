@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'individualLista.dart';
+import 'individual_lista.dart';
 
 class ListaCompras extends StatefulWidget {
   final String nomeLista;

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'myHomePage.dart';
+import 'main_page.dart';
 import 'login.dart';
 
 class StreamerPage extends StatelessWidget {

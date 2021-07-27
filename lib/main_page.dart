@@ -1,10 +1,10 @@
-import 'package:Zmarket/cat_box.dart';
-import 'package:Zmarket/cat_box_model.dart';
+import 'cat_box_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'listinhaModel.dart';
-import 'appbar.dart';
-import 'ListDisplayer.dart';
+import 'addprod_listabtn.dart';
+import 'listinha_model.dart';
+import 'app_bar.dart';
+import 'list_displayer.dart';
 import 'categorias.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Picnic': {
       'nome': 'Picnic',
       'cart': [
-        'Vinho',
+        'Pao',
         'Queijo',
       ]
     }
@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'Icone': Icon(Icons.wine_bar, color: Colors.indigo[800], size: 39),
       'SubCategorias': {
         'Vinhos Tinto': {
-          'CatName': 'Vinho Tinto',
+          'CatName': 'Vinhos Tinto',
           'Produtos': {
             'Cruz Del Sur Malbec': {
               'CatName': 'Cruz Del Sur Malbec',
@@ -150,8 +150,8 @@ class _MyHomePageState extends State<MyHomePage> {
             size: 39,
           )
         },
-        'Vinhos Branco': {
-          'CatName': 'Vinho Branco',
+        'Vinhos Brancos': {
+          'CatName': 'Vinhos Brancos',
           'Produtos': {
             'Cruz Del Sur Malbec': {
               'CatName': 'Cruz Del Sur Malbec',
@@ -161,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'Icone': Icon(Icons.wine_bar_outlined, size: 39)
         },
         'Vinhos Rose': {
-          'CatName': 'Vinho Rose',
+          'CatName': 'Vinhos Rose',
           'Produtos': {
             'Cruz Del Sur Malbec': {
               'CatName': 'Cruz Del Sur Malbec',
@@ -296,8 +296,35 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  cb() {
-    setState(() {});
+  addlistmap(list, item) {
+    List x = list as List;
+    x.add(item);
+    return x;
+  }
+
+  Future _showAddToLista(produto) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+              insetPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              title: Text.rich(TextSpan(text: 'Adicionar', children: <TextSpan>[
+                TextSpan(
+                    text: ' $produto ',
+                    style: TextStyle(color: Colors.purple[600])),
+                TextSpan(text: 'a qual lista?')
+              ])),
+              children: <Widget>[
+                ListaAddBtn(
+                    listaNames: getAllListinhaNames(posts),
+                    fun: (lista) {
+                      posts['$lista']!['cart'] =
+                          addlistmap(posts['$lista']!['cart'], produto);
+                      setState(() {});
+                      Navigator.pop(context);
+                    })
+              ]);
+        });
   }
 
   @override
@@ -358,7 +385,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ? kat = categoryName.category
                           : subKat == ''
                               ? subKat = categoryName.category
-                              : print(subKat);
+                              : _showAddToLista(categoryName.category);
                     });
                   },
                   catboxes: kat == 'Categorias'
