@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'cat_box_model.dart';
 
 class CatBox extends StatefulWidget {
   final CatBoxModel catboxModel;
-  CatBox({required this.catboxModel});
+  late final fun;
+
+  CatBox({required this.catboxModel, required this.fun});
   @override
   _CatBoxState createState() => _CatBoxState();
 }
@@ -12,6 +15,9 @@ class _CatBoxState extends State<CatBox> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+        onTap: () {
+          widget.fun(widget.catboxModel);
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -22,7 +28,6 @@ class _CatBoxState extends State<CatBox> {
             widget.catboxModel.icon,
             Text(widget.catboxModel.category)
           ]),
-        ),
-        onTap: () => {setState(() {})});
+        ));
   }
 }

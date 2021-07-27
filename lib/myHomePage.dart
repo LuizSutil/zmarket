@@ -16,6 +16,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var text = '';
+  var kat = 'Categorias';
+  var subKat = '';
 
   var posts = {
     'Lista Semanal': {
@@ -54,56 +56,199 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   };
 
-  var categorias = {
+  Map<String, dynamic> categorias = {
     'Cervejas': {
       'CatName': 'Cervejas',
-      'Icone': Icon(Icons.sports_bar),
-      'Cervejas Pretas': {'Produtos': [], 'Icone': Icon(Icons.sports_bar)},
-      'Cervejas Populares': {
-        'Produtos': [],
-        'Icone': Icon(Icons.sports_bar_outlined)
-      },
-      'Cervejas Sem alcool': {
-        'Produtos': [],
-        'Icone': Icon(Icons.sports_bar_rounded)
-      },
-      'Cervejas Seleção Nacional': {
-        'Produtos': [],
-        'Icone': Icon(Icons.sports_bar_rounded, color: Colors.amber)
+      'Icone': Icon(
+        Icons.sports_bar,
+        color: Colors.amber[900],
+        size: 39,
+      ),
+      'SubCategorias': {
+        'Cervejas Pretas': {
+          'CatName': 'Cervejas Pretas',
+          'Produtos': {
+            'Roleta Russa': {
+              'CatName': 'Roleta Russa',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.sports_bar, size: 39)
+        },
+        'Cervejas Populares': {
+          'CatName': 'Cervejas Populares',
+          'Produtos': {
+            'Roleta Russa': {
+              'CatName': 'Roleta Russa',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            },
+            'Coruja': {
+              'CatName': 'Coruja',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            },
+            'Dado Bier': {
+              'CatName': 'Dado Bier',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            },
+            'Saint beer inNatura': {
+              'CatName': 'Dado Bier',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            },
+          },
+          'Icone': Icon(
+            Icons.sports_bar_outlined,
+            size: 39,
+          )
+        },
+        'Cervejas Sem alcool': {
+          'CatName': 'Cervejas Sem alcool',
+          'Produtos': {
+            'Heineken Alcool Free': {
+              'CatName': 'Heineken Alcool Free',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            },
+            'Skol Alcool Free': {
+              'CatName': 'Skol Alcool Free',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            }
+          },
+          'Icone': Icon(
+            Icons.sports_bar_rounded,
+            size: 39,
+          )
+        },
+        'Cervejas Seleção Nacional': {
+          'CatName': 'Cervejas Nacionais',
+          'Produtos': {
+            'Roleta Russa': {
+              'CatName': 'Roleta Russa',
+              'Icone': Icon(Icons.sports_bar, size: 39)
+            }
+          },
+          'Icone': Icon(
+            Icons.sports_bar_rounded,
+            color: Colors.amber[900],
+            size: 39,
+          )
+        }
       }
     },
     'Vinhos': {
       'CatName': 'Vinhos',
-      'Icone': Icon(Icons.wine_bar),
-      'Vinhos Tinto': {'Produtos': [], 'Icone': Icon(Icons.wine_bar)},
-      'Vinhos Branco': {'Produtos': [], 'Icone': Icon(Icons.wine_bar_outlined)},
-      'Vinhos Rose': {
-        'Produtos': [],
-        'Icone': Icon(Icons.wine_bar, color: Colors.pink[900])
-      },
+      'Icone': Icon(Icons.wine_bar, color: Colors.indigo[800], size: 39),
+      'SubCategorias': {
+        'Vinhos Tinto': {
+          'CatName': 'Vinho Tinto',
+          'Produtos': {
+            'Cruz Del Sur Malbec': {
+              'CatName': 'Cruz Del Sur Malbec',
+              'Icone': Icon(Icons.wine_bar, size: 39)
+            }
+          },
+          'Icone': Icon(
+            Icons.wine_bar,
+            size: 39,
+          )
+        },
+        'Vinhos Branco': {
+          'CatName': 'Vinho Branco',
+          'Produtos': {
+            'Cruz Del Sur Malbec': {
+              'CatName': 'Cruz Del Sur Malbec',
+              'Icone': Icon(Icons.wine_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.wine_bar_outlined, size: 39)
+        },
+        'Vinhos Rose': {
+          'CatName': 'Vinho Rose',
+          'Produtos': {
+            'Cruz Del Sur Malbec': {
+              'CatName': 'Cruz Del Sur Malbec',
+              'Icone': Icon(Icons.wine_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.wine_bar, color: Colors.pink[900], size: 39)
+        }
+      }
     },
     'Destilados': {
       'CatName': 'Destilados',
-      'Icone': Icon(Icons.local_bar),
-      'Vodkas': {'Produtos': [], 'Icone': Icon(Icons.local_bar)},
-      'Whisky': {
-        'Produtos': [],
-        'Icone': Icon(Icons.local_bar, color: Colors.amber[900])
-      },
-      'Rum': {
-        'Produtos': [],
-        'Icone': Icon(Icons.local_bar, color: Colors.blueAccent[300])
-      },
-      'Cachaça': {
-        'Produtos': [],
-        'Icone': Icon(Icons.local_bar, color: Colors.deepOrange[900])
-      },
-      'Licor': {
-        'Produtos': [],
-        'Icone': Icon(Icons.local_bar, color: Colors.indigo[600])
-      },
-      'Gin': {'Produtos': [], 'Icone': Icon(Icons.local_bar)},
-      'Tequila': {'Produtos': [], 'Icone': Icon(Icons.local_bar)},
+      'Icone': Icon(Icons.local_bar, color: Colors.tealAccent[700], size: 39),
+      'SubCategorias': {
+        'Vodkas': {
+          'CatName': 'Vodkas',
+          'Produtos': {
+            'Smirnoff': {
+              'CatName': 'Smirnoff',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.local_bar, size: 39)
+        },
+        'Whisky': {
+          'CatName': 'Whisky',
+          'Produtos': {
+            'Red Label': {
+              'CatName': 'Red Label',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.local_bar, color: Colors.amber[900], size: 39)
+        },
+        'Rum': {
+          'CatName': 'Rum',
+          'Produtos': {
+            'CocoBlanc': {
+              'CatName': 'CocoBlanc',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone':
+              Icon(Icons.local_bar, color: Colors.blueAccent[300], size: 39)
+        },
+        'Cachaça': {
+          'CatName': 'Cachaça',
+          'Produtos': {
+            'Caninha': {
+              'CatName': 'Caninha',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone':
+              Icon(Icons.local_bar, color: Colors.deepOrange[900], size: 39)
+        },
+        'Licor': {
+          'CatName': 'Licor',
+          'Produtos': {
+            'Caninha': {
+              'CatName': 'Caninha',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.local_bar, color: Colors.indigo[600], size: 39)
+        },
+        'Gin': {
+          'CatName': 'Gin',
+          'Produtos': {
+            'Caninha': {
+              'CatName': 'Caninha',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.local_bar, size: 39)
+        },
+        'Tequila': {
+          'CatName': 'Tequila',
+          'Produtos': {
+            'Caninha': {
+              'CatName': 'Caninha',
+              'Icone': Icon(Icons.local_bar, size: 39)
+            }
+          },
+          'Icone': Icon(Icons.local_bar, size: 39)
+        },
+      }
     }
   };
 
@@ -141,10 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
-                child: Icon(
-                  Icons.arrow_forward,
-                  size: 20,
-                ),
+                child: Icon(Icons.arrow_right),
                 shape: CircleBorder(),
               ),
             )
@@ -154,32 +296,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  cb() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    var nirvana = [
-      CatBox(
-          catboxModel: CatBoxModel(
-              icon: Icon(
-                Icons.sports_bar,
-                size: 55,
-              ),
-              category: categorias['Cervejas']!['CatName'].toString())),
-      CatBox(
-          catboxModel: CatBoxModel(
-              icon: Icon(
-                Icons.wine_bar,
-                size: 55,
-              ),
-              category: categorias['Vinhos']!['CatName'].toString())),
-      CatBox(
-          catboxModel: CatBoxModel(
-              icon: Icon(
-                Icons.local_bar,
-                size: 55,
-              ),
-              category: categorias['Destilados']!['CatName'].toString()))
-    ];
-
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: CustomScrollView(slivers: [
@@ -215,11 +337,36 @@ class _MyHomePageState extends State<MyHomePage> {
               endIndent: 20,
             ),
           ])),
+          SliverToBoxAdapter(
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    setState(() {
+                      subKat == '' ? kat = 'Categorias' : subKat = '';
+                    });
+                  },
+                )),
+          ),
           SliverPadding(
               padding: EdgeInsets.all(20),
               sliver: Categorias(
-                catbox: nirvana,
-              )),
+                  func: (categoryName) {
+                    setState(() {
+                      kat == 'Categorias'
+                          ? kat = categoryName.category
+                          : subKat == ''
+                              ? subKat = categoryName.category
+                              : print(subKat);
+                    });
+                  },
+                  catboxes: kat == 'Categorias'
+                      ? getAllCatBoxes(categorias)
+                      : subKat == ''
+                          ? getAllCatBoxes(categorias['$kat']['SubCategorias'])
+                          : getAllCatBoxes(categorias['$kat']['SubCategorias']
+                              ['$subKat']['Produtos']))),
         ]));
   }
 }

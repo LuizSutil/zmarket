@@ -100,13 +100,8 @@ class _IndividualListaState extends State<IndividualLista> {
           ])),
           SliverPadding(
             padding: EdgeInsets.all(20),
-            sliver: Categorias(
-              catbox: [
-                CatBox(
-                    catboxModel:
-                        CatBoxModel(icon: Icon(Icons.ac_unit), category: 'bla'))
-              ],
-            ),
+            sliver: SliverToBoxAdapter(
+                child: Text('insert categorias widget here')),
           ),
         ]));
   }
