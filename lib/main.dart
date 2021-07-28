@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Z_Market',
         theme: ThemeData(
-            primaryColor: Color.fromRGBO(33, 20, 68, 1),
-            accentColor: Colors.green),
+            primaryColor: Color.fromRGBO(239, 234, 232, 1),
+            accentColor: Color.fromRGBO(33, 20, 68, 1)),
         home: StreamerPage(),
       ));
 }
