@@ -1,4 +1,5 @@
 import 'package:Zmarket/streamer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -85,16 +86,19 @@ class _GoogleButtonState extends State<GoogleButton> {
       height: 50,
       width: 350,
       child: OutlinedButton(
-        onPressed: () {
+        onPressed: () async {
           final provider =
               Provider.of<GoogleSignInProvider>(context, listen: false);
-          provider.googleLogin();
+          await provider.googleLogin();
 
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => StreamerPage()),
-            (Route<dynamic> route) => false,
-          );
+          FirebaseAuth.instance.currentUser != null
+              ? Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => StreamerPage()),
+                  (Route<dynamic> route) => false,
+                )
+              : print(
+                  'FirebaseAuth.instance.currentUser is: ${FirebaseAuth.instance.currentUser}');
         },
         style: OutlinedButton.styleFrom(
             side: BorderSide(color: Theme.of(context).accentColor),

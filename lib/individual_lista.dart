@@ -35,11 +35,14 @@ class _IndividualListaState extends State<IndividualLista> {
               child: Container(
                   height: 500,
                   child: Card(
+                    color: Theme.of(context).accentColor,
                     child: ListView(children: [
                       Padding(
                           child: Text(widget.nomeLista,
                               style: TextStyle(
-                                  color: Colors.purple[900], fontSize: 26)),
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 26)),
                           padding: EdgeInsets.fromLTRB(20, 20, 0, 10)),
                       Padding(
                         child: Column(
@@ -62,7 +65,7 @@ class _IndividualListaState extends State<IndividualLista> {
                         decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Theme.of(context).primaryColor,
                     )),
                     padding: EdgeInsets.fromLTRB(20, 0, 10, 10),
                   ),
@@ -142,21 +145,17 @@ class _ItemState extends State<Item> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(71, 51, 86, 1),
+                color: Theme.of(context).primaryColor,
               ),
               alignment: Alignment.centerLeft,
               width: 80,
               height: 80,
-              child: Card(
-                color: Color.fromRGBO(71, 51, 86, 1),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Image(
-                      color: Colors.white,
-                      image: AssetImage('assets/ztelluz_logo.png'),
-                      height: 20,
-                    )),
-              ),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Image(
+                    image: AssetImage('assets/purple.png'),
+                    height: 20,
+                  )),
             ),
             Container(
                 child:
@@ -172,7 +171,10 @@ class _ItemState extends State<Item> {
                   size: 25,
                 ),
               ),
-              Text(quantity.toString()),
+              Text(
+                quantity.toString(),
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
               IconButton(
                 splashRadius: 23,
                 color: Color.fromRGBO(28, 150, 9, 1),
@@ -188,7 +190,8 @@ class _ItemState extends State<Item> {
             Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Container(
-                  child: Text('RS $finalPrice'),
+                  child: Text('RS $finalPrice',
+                      style: TextStyle(color: Theme.of(context).primaryColor)),
                 )),
             IconButton(
               splashRadius: 23,
@@ -204,7 +207,10 @@ class _ItemState extends State<Item> {
         Align(
           child: Padding(
               child: Text(widget.element,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor)),
               padding: EdgeInsets.fromLTRB(0, 5, 0, 0)),
           alignment: Alignment.centerLeft,
         ),
