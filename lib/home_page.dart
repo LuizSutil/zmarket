@@ -182,6 +182,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: MaterialButton(
                     onPressed: () {
                       _showCriarLista();
+                      print('Categoria: $kat');
+                      print('migue: $migue');
+                      print('subcategoria: $subKat');
+                      print(sub['Bebidas']['Cervejas']['SubCategorias']);
                     },
                     color: Color.fromRGBO(31, 192, 5, 1),
                     textColor: Colors.white,
@@ -265,7 +269,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
                     setState(() {
-                      subKat == '' ? kat = 'Categorias' : subKat = '';
+                      kat != 'Categorias' && migue == ''
+                          ? kat = 'Categorias'
+                          : migue != '' && subKat == ''
+                              ? migue = ''
+                              : subKat = '';
                     });
                   },
                 )),
@@ -276,19 +284,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   func: (categoryName) {
                     setState(() {
                       kat == 'Categorias'
-                          ? kat = categoryName.category
-                          : subKat == ''
-                              ? subKat = categoryName.category
-                              : _showAddToLista(categoryName.category);
+                          ? kat = categoryName
+                          : migue == ''
+                              ? migue = categoryName
+                              : subKat == ''
+                                  ? subKat = categoryName
+                                  : _showAddToLista(categoryName);
                     });
                   },
                   catboxes: kat == 'Categorias'
-                      ? getAllCatBoxes(bebidasAlcoolicas)
-                      : subKat == ''
-                          ? getAllCatBoxes(
-                              bebidasAlcoolicas['$kat']['SubCategorias'])
-                          : getAllCatBoxes(bebidasAlcoolicas['$kat']
-                              ['SubCategorias']['$subKat']['Produtos']))),
+                      ? getAllCatBoxes(categorias)
+                      : migue == ''
+                          ? getAllCatBoxes(sub[kat])
+                          : subKat == ''
+                              ? getAllCatBoxes(sub[kat][migue]['SubCategorias'])
+                              : getAllCatBoxes(sub[kat][migue]['SubCategorias']
+                                  [subKat]['Produtos']))),
         ]));
   }
 }

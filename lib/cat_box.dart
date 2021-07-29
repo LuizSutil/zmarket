@@ -25,7 +25,7 @@ class _CatBoxState extends State<CatBox> {
             child: InkWell(
                 splashColor: Colors.purple,
                 onTap: () {
-                  widget.fun(widget.catboxModel);
+                  widget.fun(widget.catboxModel.category);
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
