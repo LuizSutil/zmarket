@@ -62,7 +62,7 @@ Map<String, dynamic> sub = {
             size: 39,
           )
         },
-        'Cervejas Seleção Nacional': {
+        'Cervejas Nacionais': {
           'CatName': 'Cervejas Nacionais',
           'Produtos': {
             'Roleta Russa': {
