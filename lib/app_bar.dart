@@ -14,7 +14,11 @@ class _ZappbarState extends State<Zappbar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text('Ztelluz Market'),
+      backgroundColor: Theme.of(context).accentColor,
+      title: Text(
+        'Ztelluz Market',
+        style: TextStyle(color: Theme.of(context).primaryColor),
+      ),
       actions: [
         Row(
           children: [

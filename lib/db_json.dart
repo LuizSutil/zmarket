@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<String, dynamic> categorias = {
+Map<String, dynamic> bebidasAlcoolicas = {
   'Cervejas': {
     'CatName': 'Cervejas',
     'Icone': Icon(
@@ -191,6 +191,17 @@ Map<String, dynamic> categorias = {
         'Icone': Icon(Icons.local_bar, size: 39)
       },
     }
+  }
+};
+
+Map<String, dynamic> categorias = {
+  'Bebidas Alcoolicas': {
+    'CatName': 'Bebidas Alcoolicas',
+    'Icone': Icon(
+      Icons.sports_bar,
+      color: Colors.amber[900],
+      size: 39,
+    ),
   }
 };
 

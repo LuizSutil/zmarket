@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image(
             image: AssetImage('assets/purple.png'),
+            color: Theme.of(context).accentColor,
             height: 95,
           ),
           Padding(

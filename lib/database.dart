@@ -5,6 +5,6 @@ final databaseReference = FirebaseDatabase.instance.reference();
 
 DatabaseReference savePost(Post post) {
   var id = databaseReference.child('posts/').push();
-  id.set(post.toJson());
+  id.set(post);
   return id;
 }
