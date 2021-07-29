@@ -102,6 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       posts['$lista']!['cart'] =
                           _addlistmap(posts['$lista']!['cart'], produto);
                       setState(() {});
+                      FirebaseAnalytics().logEvent(
+                          name: 'adicionou_para_lista',
+                          parameters: {
+                            'Lista': '$lista',
+                            'Produto': '$produto'
+                          });
                       Navigator.pop(context);
                     })
               ]);
@@ -182,10 +188,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: MaterialButton(
                     onPressed: () {
                       _showCriarLista();
-                      print('Categoria: $kat');
-                      print('migue: $migue');
-                      print('subcategoria: $subKat');
-                      print(sub['Bebidas']['Cervejas']['SubCategorias']);
                     },
                     color: Color.fromRGBO(31, 192, 5, 1),
                     textColor: Colors.white,
@@ -283,13 +285,33 @@ class _MyHomePageState extends State<MyHomePage> {
               sliver: Categorias(
                   func: (categoryName) {
                     setState(() {
-                      kat == 'Categorias'
-                          ? kat = categoryName
-                          : migue == ''
-                              ? migue = categoryName
-                              : subKat == ''
-                                  ? subKat = categoryName
-                                  : _showAddToLista(categoryName);
+                      if (kat == 'Categorias') {
+                        kat = categoryName;
+                        FirebaseAnalytics().logEvent(
+                            name: 'entrou_em_categoria',
+                            parameters: {'Categoria': '$categoryName'});
+                      } else if (migue == '') {
+                        migue = categoryName;
+                        FirebaseAnalytics().logEvent(
+                            name: 'entrou_em_subcategoria',
+                            parameters: {
+                              'SubCategoria': '$migue',
+                              'Categoria': '$kat'
+                            });
+                      } else if (subKat == '') {
+                        subKat = categoryName;
+                        FirebaseAnalytics().logEvent(
+                            name: 'entrou_em_subcategoria',
+                            parameters: {
+                              'SubCategoria': '$subKat',
+                              'Categoria': '$migue'
+                            });
+                      } else {
+                        _showAddToLista(categoryName);
+                        FirebaseAnalytics().logEvent(
+                            name: 'abriu_item',
+                            parameters: {'Item': '$categoryName'});
+                      }
                     });
                   },
                   catboxes: kat == 'Categorias'
@@ -303,3 +325,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ]));
   }
 }
+
+//FirebaseAnalytics().logEvent(name: 'entrou_em_categoria', parameters: {'categoria': '$categoryName'});

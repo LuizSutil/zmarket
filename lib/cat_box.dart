@@ -17,12 +17,14 @@ class _CatBoxState extends State<CatBox> {
     return Container(
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).accentColor, width: 3),
-          borderRadius: BorderRadius.circular(10),
-          color: Color.fromRGBO(235, 235, 235, 1),
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).primaryColor,
         ),
         child: Material(
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(20),
             child: InkWell(
+                borderRadius: BorderRadius.circular(20),
                 splashColor: Colors.purple,
                 onTap: () {
                   widget.fun(widget.catboxModel.category);
