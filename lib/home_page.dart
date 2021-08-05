@@ -1,4 +1,6 @@
 import 'package:Zmarket/lista_compras.dart';
+import 'package:Zmarket/prod_box.dart';
+import 'package:Zmarket/produto_box_model.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'cat_box_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +11,8 @@ import 'app_bar.dart';
 import 'categorias.dart';
 import 'db_json.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'produtos.dart';
 
 class MyHomePage extends StatefulWidget {
   final user = FirebaseAuth.instance.currentUser!;
@@ -281,47 +285,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 )),
           ),
           SliverPadding(
-              padding: EdgeInsets.all(20),
-              sliver: Categorias(
-                  func: (categoryName) {
-                    setState(() {
-                      if (kat == 'Categorias') {
-                        kat = categoryName;
-                        FirebaseAnalytics().logEvent(
-                            name: 'entrou_em_categoria',
-                            parameters: {'Categoria': '$categoryName'});
-                      } else if (migue == '') {
-                        migue = categoryName;
-                        FirebaseAnalytics().logEvent(
-                            name: 'entrou_em_subcategoria',
-                            parameters: {
-                              'SubCategoria': '$migue',
-                              'Categoria': '$kat'
-                            });
-                      } else if (subKat == '') {
-                        subKat = categoryName;
-                        FirebaseAnalytics().logEvent(
-                            name: 'entrou_em_subcategoria',
-                            parameters: {
-                              'SubCategoria': '$subKat',
-                              'Categoria': '$migue'
-                            });
-                      } else {
-                        _showAddToLista(categoryName);
-                        FirebaseAnalytics().logEvent(
-                            name: 'abriu_item',
-                            parameters: {'Item': '$categoryName'});
-                      }
-                    });
-                  },
-                  catboxes: kat == 'Categorias'
-                      ? getAllCatBoxes(categorias)
-                      : migue == ''
-                          ? getAllCatBoxes(sub[kat])
-                          : subKat == ''
-                              ? getAllCatBoxes(sub[kat][migue]['SubCategorias'])
-                              : getAllCatBoxes(sub[kat][migue]['SubCategorias']
-                                  [subKat]['Produtos']))),
+            padding: EdgeInsets.fromLTRB(9, 20, 9, 20),
+            sliver: subKat == ''
+                ? Categorias(
+                    func: (categoryName) {
+                      setState(() {
+                        if (kat == 'Categorias') {
+                          kat = categoryName;
+                          FirebaseAnalytics().logEvent(
+                              name: 'entrou_em_categoria',
+                              parameters: {'Categoria': '$categoryName'});
+                        } else if (migue == '') {
+                          migue = categoryName;
+                          FirebaseAnalytics().logEvent(
+                              name: 'entrou_em_subcategoria',
+                              parameters: {
+                                'SubCategoria': '$migue',
+                                'Categoria': '$kat'
+                              });
+                        } else if (subKat == '') {
+                          subKat = categoryName;
+                          FirebaseAnalytics().logEvent(
+                              name: 'entrou_em_subcategoria',
+                              parameters: {
+                                'SubCategoria': '$subKat',
+                                'Categoria': '$migue'
+                              });
+                        } else {
+                          _showAddToLista(categoryName);
+                          FirebaseAnalytics().logEvent(
+                              name: 'abriu_item',
+                              parameters: {'Item': '$categoryName'});
+                        }
+                      });
+                    },
+                    catboxes: kat == 'Categorias'
+                        ? getAllCatBoxes(categorias)
+                        : migue == ''
+                            ? getAllCatBoxes(sub[kat])
+                            : subKat == ''
+                                ? getAllCatBoxes(
+                                    sub[kat][migue]['SubCategorias'])
+                                : getAllCatBoxes(sub[kat][migue]
+                                    ['SubCategorias'][subKat]['Produtos']))
+                : Produtos(prodboxes: [
+                    ProdBoxModel(
+                        name: 'MontGras Reserva Cabernet Sauvignon',
+                        image: 'assets/vinho1.JPG',
+                        category: 'Summer is dead'),
+                    ProdBoxModel(
+                        name: 'Cruz Del Sur Malbec',
+                        image: 'assets/google_logo.png',
+                        category: 'Summer is dead'),
+                    ProdBoxModel(
+                        name: 'Cruz Del Sur Malbec',
+                        image: 'assets/purple.png',
+                        category: 'Summer is dead'),
+                    ProdBoxModel(
+                        name: 'Cruz Del Sur Malbec',
+                        image: 'assets/ztelluz_logo.png',
+                        category: 'Summer Sadness course my veins')
+                  ], func: () {}),
+          ),
         ]));
   }
 }

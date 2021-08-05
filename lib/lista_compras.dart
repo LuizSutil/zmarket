@@ -25,12 +25,12 @@ class _ListaComprasState extends State<ListaCompras> {
           borderRadius: BorderRadius.circular(15.0),
           gradient: LinearGradient(
             colors: [
-              const Color.fromRGBO(92, 32, 171, 1),
-              const Color.fromRGBO(60, 60, 134, 1),
               Theme.of(context).accentColor,
+              Colors.grey,
+              Theme.of(context).primaryColor,
             ],
-            begin: const FractionalOffset(2.0, 2.0),
-            end: const FractionalOffset(2.0, 2.0),
+            begin: const FractionalOffset(0, 1.5),
+            end: const FractionalOffset(1.5, 0.0),
             stops: [0.0, 1.0, 2.0],
             tileMode: TileMode.clamp,
           ),
