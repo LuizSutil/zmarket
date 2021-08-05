@@ -1,18 +1,16 @@
+import 'package:Zmarket/category/categories.dart';
 import 'package:Zmarket/lista_compras.dart';
-import 'package:Zmarket/prod_box.dart';
-import 'package:Zmarket/produto_box_model.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'cat_box_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'addprod_listabtn.dart';
+import 'category/category_container.dart';
+import 'category/category_model.dart';
+
 import 'listinha_model.dart';
 import 'app_bar.dart';
-import 'categorias.dart';
 import 'db_json.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
-import 'produtos.dart';
 
 class MyHomePage extends StatefulWidget {
   final user = FirebaseAuth.instance.currentUser!;
@@ -61,11 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (text != '') {
                     setState(() {
                       posts['$text'] = {'nome': '$text', 'cart': []};
+                      print(posts.length);
+                      _controller.animateToPage(posts.length - 1);
 
+                      _current = posts.length;
                       Navigator.pop(context);
                       //_current = posts.keys.toList().length - 1;
-                      _controller.animateToPage(posts.length);
-                      _current = posts.length;
+
                       FirebaseAnalytics().logEvent(
                           name: 'nova_lista_criada',
                           parameters: {'listName': '$text'});
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPageChanged: (index, reason) {
                           setState(() {
                             _current = index;
-                            print(_current);
+                            //print(_current);
                           });
                         },
                         viewportFraction: 0.9,
@@ -221,12 +221,12 @@ class _MyHomePageState extends State<MyHomePage> {
           )),
 
           //
-          // Promotions tab
-          //
-
-          //
           //// categories
           /////
+          ///
+          ///
+          ///
+          ////button to go back
           SliverToBoxAdapter(
             child: Align(
                 alignment: Alignment.centerRight,
@@ -244,72 +244,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 )),
           ),
           SliverPadding(
-            padding: EdgeInsets.fromLTRB(9, 20, 9, 20),
-            sliver: subKat == ''
-                ? Categorias(
-                    func: (categoryName) {
-                      setState(() {
-                        if (kat == 'Categorias') {
-                          kat = categoryName;
-                          FirebaseAnalytics().logEvent(
-                              name: 'entrou_em_categoria',
-                              parameters: {'Categoria': '$categoryName'});
-                        } else if (migue == '') {
-                          migue = categoryName;
-                          FirebaseAnalytics().logEvent(
-                              name: 'entrou_em_subcategoria',
-                              parameters: {
-                                'SubCategoria': '$migue',
-                                'Categoria': '$kat'
-                              });
-                        } else if (subKat == '') {
-                          subKat = categoryName;
-                          FirebaseAnalytics().logEvent(
-                              name: 'entrou_em_subcategoria',
-                              parameters: {
-                                'SubCategoria': '$subKat',
-                                'Categoria': '$migue'
-                              });
-                        } else {
-                          _showAddToLista(categoryName);
-                          FirebaseAnalytics().logEvent(
-                              name: 'abriu_item',
-                              parameters: {'Item': '$categoryName'});
-                        }
-                      });
-                    },
-                    catboxes: kat == 'Categorias'
-                        ? getAllCatBoxes(categorias)
-                        : migue == ''
-                            ? getAllCatBoxes(sub[kat])
-                            : subKat == ''
-                                ? getAllCatBoxes(
-                                    sub[kat][migue]['SubCategorias'])
-                                : getAllCatBoxes(sub[kat][migue]
-                                    ['SubCategorias'][subKat]['Produtos']))
-                : Produtos(prodboxes: [
-                    ProdBoxModel(
-                        price: 'RS 35,50',
-                        name: 'MontGras Reserva aaaaaaaaaaaaaaaaa ssssssssssss',
-                        image: 'assets/vinho1.JPG',
-                        category: 'Summer is dead'),
-                    ProdBoxModel(
-                        price: 'RS 35,50',
-                        name: 'Cruz Del Sur Malbec',
-                        image: 'assets/redwine.png',
-                        category: 'Summer is dead'),
-                    ProdBoxModel(
-                        price: 'RS 35,50',
-                        name: 'Cruz Del Sur Malbec',
-                        image: 'assets/whitewine.png',
-                        category: 'Summer is dead'),
-                    ProdBoxModel(
-                        price: 'RS 35,50',
-                        name: 'Cruz Del Sur Malbec',
-                        image: 'assets/rosewine.png',
-                        category: 'Summer Sadness course my veins')
-                  ], func: () {}),
-          ),
+              padding: EdgeInsets.fromLTRB(9, 20, 9, 20),
+              sliver:
+                  Categorias(categotyModels: getAllCategoryModels(categories)))
         ]));
   }
 }

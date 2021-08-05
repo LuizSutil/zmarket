@@ -1,11 +1,10 @@
-import 'package:Zmarket/cat_box_model.dart';
+import 'package:Zmarket/category/category_container.dart';
 import 'package:flutter/material.dart';
-import 'cat_box.dart';
+import 'category_model.dart';
 
 class Categorias extends StatefulWidget {
-  final List<CatBoxModel> catboxes;
-  late final func;
-  Categorias({required this.catboxes, required this.func});
+  final List<CategoryModel> categotyModels;
+  Categorias({required this.categotyModels});
 
   @override
   _CategoriasState createState() => _CategoriasState();
@@ -16,10 +15,10 @@ class _CategoriasState extends State<Categorias> {
   Widget build(BuildContext context) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-        return CatBox(catboxModel: widget.catboxes[index], fun: widget.func);
-      }, childCount: widget.catboxes.length),
+        return CategoryContainer(categoryModel: widget.categotyModels[index]);
+      }, childCount: widget.categotyModels.length),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing: 15,
+        crossAxisSpacing: 10,
         mainAxisSpacing: 15,
         crossAxisCount: 3,
       ),

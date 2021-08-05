@@ -145,7 +145,7 @@ class _ItemState extends State<Item> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).primaryColor,
+                color: Colors.white,
               ),
               alignment: Alignment.centerLeft,
               width: 80,
@@ -153,8 +153,8 @@ class _ItemState extends State<Item> {
               child: Align(
                   alignment: Alignment.center,
                   child: Image(
-                    image: AssetImage('assets/purple.png'),
-                    height: 20,
+                    image: AssetImage('assets/vinhos/vinho1.JPG'),
+                    height: 80,
                   )),
             ),
             Container(
