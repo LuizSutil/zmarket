@@ -21,8 +21,8 @@ class _ProdutosState extends State<Produtos> {
       }, childCount: widget.prodboxes.length),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisSpacing: 10,
-        mainAxisSpacing: 60,
-        crossAxisCount: 3,
+        mainAxisSpacing: 55,
+        crossAxisCount: 2,
       ),
     );
   }

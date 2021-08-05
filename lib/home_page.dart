@@ -26,6 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var subKat = '';
   var migue = '';
   var _current = 0;
+  final CarouselController _controller = CarouselController();
 
   Future _showCriarLista() async {
     await showDialog(
@@ -63,6 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                       Navigator.pop(context);
                       //_current = posts.keys.toList().length - 1;
+                      _controller.animateToPage(posts.length);
+                      _current = posts.length;
                       FirebaseAnalytics().logEvent(
                           name: 'nova_lista_criada',
                           parameters: {'listName': '$text'});
@@ -134,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                   padding: EdgeInsets.only(top: 30),
                   child: CarouselSlider(
+                    carouselController: _controller,
                     options: CarouselOptions(
                         onPageChanged: (index, reason) {
                           setState(() {
@@ -141,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             print(_current);
                           });
                         },
-                        viewportFraction: 1,
+                        viewportFraction: 0.9,
                         enableInfiniteScroll: false,
                         height: 180),
                     items: getAllListinhas(posts).map((i) {
@@ -219,51 +223,6 @@ class _MyHomePageState extends State<MyHomePage> {
           //
           // Promotions tab
           //
-          SliverToBoxAdapter(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 30),
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                        viewportFraction: 1,
-                        enableInfiniteScroll: false,
-                        height: 130),
-                    items: [
-                      'Promoções',
-                      'Produtos de limpeza 20% deconto',
-                      'Lorem Ipsum'
-                    ].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Padding(
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      color: Colors.red),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        splashColor:
-                                            Theme.of(context).accentColor,
-                                        onTap: () {},
-                                        child: Container(
-                                            child: Center(
-                                                child: Text(
-                                          i,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            fontSize: 30,
-                                          ),
-                                        )))),
-                                  )));
-                        },
-                      );
-                    }).toList(),
-                  ))),
 
           //
           //// categories
@@ -330,20 +289,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ['SubCategorias'][subKat]['Produtos']))
                 : Produtos(prodboxes: [
                     ProdBoxModel(
-                        name: 'MontGras Reserva Cabernet Sauvignon',
+                        price: 'RS 35,50',
+                        name: 'MontGras Reserva aaaaaaaaaaaaaaaaa ssssssssssss',
                         image: 'assets/vinho1.JPG',
                         category: 'Summer is dead'),
                     ProdBoxModel(
+                        price: 'RS 35,50',
                         name: 'Cruz Del Sur Malbec',
-                        image: 'assets/google_logo.png',
+                        image: 'assets/redwine.png',
                         category: 'Summer is dead'),
                     ProdBoxModel(
+                        price: 'RS 35,50',
                         name: 'Cruz Del Sur Malbec',
-                        image: 'assets/purple.png',
+                        image: 'assets/whitewine.png',
                         category: 'Summer is dead'),
                     ProdBoxModel(
+                        price: 'RS 35,50',
                         name: 'Cruz Del Sur Malbec',
-                        image: 'assets/ztelluz_logo.png',
+                        image: 'assets/rosewine.png',
                         category: 'Summer Sadness course my veins')
                   ], func: () {}),
           ),
