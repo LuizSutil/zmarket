@@ -53,7 +53,7 @@ class _ListaComprasState extends State<ListaCompras> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                          padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
+                          padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                           child: Text(widget.nomeLista,
                               style: TextStyle(
                                   fontSize: 20,

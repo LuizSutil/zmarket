@@ -267,8 +267,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
             ),
           ])),
+
           SliverPadding(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.fromLTRB(40, 10, 40, 30),
             sliver: Categorias(
               categotyModels: getCategoryModels(
                   data: shop, category: "Vinhos", country: dropdownValue),

@@ -17,6 +17,7 @@ class _CategoryContainerState extends State<CategoryContainer> {
       Column(
         children: [
           Container(
+              constraints: BoxConstraints(minHeight: 135, minWidth: 135),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border:
@@ -29,12 +30,26 @@ class _CategoryContainerState extends State<CategoryContainer> {
                 },
                 child: Image(
                   image: AssetImage(widget.categoryModel.image),
-                  height: 120,
-                  width: 120,
+                  height: 115,
+                  width: 115,
                 ),
               )),
           Text(
+            r"R$ " + widget.categoryModel.price,
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+          Text(
             widget.categoryModel.title,
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+          Text(
+            widget.categoryModel.grape,
             style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,

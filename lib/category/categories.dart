@@ -18,9 +18,9 @@ class _CategoriasState extends State<Categorias> {
         return CategoryContainer(categoryModel: widget.categotyModels[index]);
       }, childCount: widget.categotyModels.length),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 15,
-        crossAxisCount: 3,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 45,
+        crossAxisCount: 2,
       ),
     );
   }
