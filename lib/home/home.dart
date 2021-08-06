@@ -1,5 +1,6 @@
 import 'package:Zmarket/home/profile.dart';
 import 'package:Zmarket/home/home_page.dart';
+import 'package:Zmarket/search/wine_search.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,11 +12,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     MyHomePage(),
-    Center(
-        child: Text(
-      'Em Desenvolvimento...',
-      style: TextStyle(fontSize: 30),
-    )),
+    WineSelect(),
     Center(
         child: Text(
       'Em Desenvolvimento...',

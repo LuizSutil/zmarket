@@ -1,5 +1,6 @@
 import 'package:Zmarket/category/categories.dart';
 import 'package:Zmarket/category/category_model.dart';
+import 'package:Zmarket/functionalities/filter_drop_down.dart';
 import 'package:Zmarket/lista_compras.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = "";
   var _current = 0;
   final CarouselController _controller = CarouselController();
-  String dropdownValue = "All";
+  String paisController = "All";
   Future _showCriarLista() async {
     await showDialog(
       context: context,
@@ -228,40 +229,15 @@ class _MyHomePageState extends State<MyHomePage> {
           SliverToBoxAdapter(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Pais',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(Icons.arrow_downward),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.deepPurpleAccent,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: <String>['All', 'Argentina', 'Chile']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15)),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
+            Filter(
+                filterValue: paisController,
+                filterText: "Pais",
+                filterItems: ['All', 'Argentina', 'Chile'],
+                fun: (newvalue) {
+                  setState(() {
+                    paisController = newvalue;
+                  });
+                }),
             IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {},
@@ -272,7 +248,10 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.fromLTRB(40, 10, 40, 30),
             sliver: Categorias(
               categotyModels: getCategoryModels(
-                  data: shop, category: "Vinhos", country: dropdownValue),
+                data: shop,
+                category: "Vinhos",
+                country: paisController,
+              ),
             ),
           )
         ]));
