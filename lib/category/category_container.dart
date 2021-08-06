@@ -18,29 +18,30 @@ class _CategoryContainerState extends State<CategoryContainer> {
         children: [
           Container(
               decoration: BoxDecoration(
+                color: Colors.white,
                 border:
                     Border.all(color: Theme.of(context).accentColor, width: 2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: GestureDetector(
                 onTap: () {
-                  print(widget.categoryModel.name);
+                  print(widget.categoryModel.title);
                 },
                 child: Image(
                   image: AssetImage(widget.categoryModel.image),
                   height: 120,
-                  width: 9999,
+                  width: 120,
                 ),
-              ))
+              )),
+          Text(
+            widget.categoryModel.title,
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          )
         ],
       ),
-      Text(
-        widget.categoryModel.name,
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).accentColor),
-      )
     ]);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'home/home.dart';
 import 'intro.dart';
 
 class StreamerPage extends StatelessWidget {
@@ -12,7 +12,7 @@ class StreamerPage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
-              return MyHomePage();
+              return Home();
             } else if (snapshot.hasError) {
               return Center(child: Text('Something went wrong!'));
             } else {

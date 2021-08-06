@@ -13,7 +13,7 @@ var posts = {
 var shop = {
   "Vinhos": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Cruz del Sur",
       "tipo": "Tinto",
       "barril": "Americano",
@@ -28,9 +28,10 @@ var shop = {
       "class": "Meio Seco",
       "volume": "750",
       "price": "32,90",
+      "image": "assets/vinhos/cruz_del_sur_malbec.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Casillero del Diablo",
       "tipo": "Tinto",
       "barril": "Americano",
@@ -42,12 +43,13 @@ var shop = {
       "winery": "Concha Y Toro",
       "country": "Chile",
       "region": "Vale Central",
-      "class": "Seco",
+      "classe": "Seco",
       "Volume": "750",
       "price": "62,90",
+      "image": "assets/vinhos/casillero_del_diablo_merlot.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Concha y Toro",
       "tipo": "Tinto",
       "barril": "Americano",
@@ -61,6 +63,7 @@ var shop = {
       "region": "Vale Central",
       "Volume": "750",
       "price": "36,90",
+      "image": "assets/vinhos/concha_y_toro_merlot.JPG"
     }
   ]
 };

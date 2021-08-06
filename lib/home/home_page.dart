@@ -1,15 +1,13 @@
 import 'package:Zmarket/category/categories.dart';
+import 'package:Zmarket/category/category_model.dart';
 import 'package:Zmarket/lista_compras.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'addprod_listabtn.dart';
-import 'category/category_container.dart';
-import 'category/category_model.dart';
+import '../addprod_listabtn.dart';
 
-import 'listinha_model.dart';
-import 'app_bar.dart';
-import 'db_json.dart';
+import '../listinha_model.dart';
+import '../db_json.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -19,13 +17,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var text = '';
-  var kat = 'Categorias';
-  var subKat = '';
-  var migue = '';
+  var text = "";
   var _current = 0;
   final CarouselController _controller = CarouselController();
-
+  String dropdownValue = "All";
   Future _showCriarLista() async {
     await showDialog(
       context: context,
@@ -124,12 +119,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //bottomNavigationBar: TabBare(),
         backgroundColor: Theme.of(context).primaryColor,
         body: CustomScrollView(slivers: [
           //
           //main appbar
           //
-          Zappbar(),
+          //Zappbar(),
           //
           //Carousel
           //
@@ -196,6 +192,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: MaterialButton(
                     onPressed: () {
                       _showCriarLista();
+                      //print(shop["Vinhos"]![0]["title"]);
+                      //print(getCategoryModels(shop, 'Vinhos'));
                     },
                     color: Color.fromRGBO(31, 192, 5, 1),
                     textColor: Colors.white,
@@ -228,25 +226,54 @@ class _MyHomePageState extends State<MyHomePage> {
           ///
           ////button to go back
           SliverToBoxAdapter(
-            child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pais',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
                     setState(() {
-                      kat != 'Categorias' && migue == ''
-                          ? kat = 'Categorias'
-                          : migue != '' && subKat == ''
-                              ? migue = ''
-                              : subKat = '';
+                      dropdownValue = newValue!;
                     });
                   },
-                )),
-          ),
+                  items: <String>['All', 'Argentina', 'Chile']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {},
+            ),
+          ])),
           SliverPadding(
-              padding: EdgeInsets.fromLTRB(9, 20, 9, 20),
-              sliver:
-                  Categorias(categotyModels: getAllCategoryModels(categories)))
+            padding: EdgeInsets.all(5),
+            sliver: Categorias(
+              categotyModels: getCategoryModels(
+                  data: shop, category: "Vinhos", country: dropdownValue),
+            ),
+          )
         ]));
   }
 }
