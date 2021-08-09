@@ -1,18 +1,16 @@
-import 'package:Zmarket/produto_box_model.dart';
+import 'package:Zmarket/produtos/produto_class.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
-class ProdBox extends StatefulWidget {
-  final ProdBoxModel prodBoxModel;
+class ProdutoContainer extends StatefulWidget {
+  final ProdutoModel produtoModel;
   final fun;
 
-  ProdBox({required this.prodBoxModel, required this.fun});
-
+  ProdutoContainer({required this.fun, required this.produtoModel});
   @override
-  _ProdBoxState createState() => _ProdBoxState();
+  _ProdutoContainerState createState() => _ProdutoContainerState();
 }
 
-class _ProdBoxState extends State<ProdBox> {
+class _ProdutoContainerState extends State<ProdutoContainer> {
   @override
   Widget build(BuildContext context) {
     return Wrap(children: [
@@ -25,7 +23,7 @@ class _ProdBoxState extends State<ProdBox> {
               children: [
                 Container(
                   child: Image(
-                    image: AssetImage(widget.prodBoxModel.image),
+                    image: AssetImage(widget.produtoModel.image),
                     height: 85,
                   ),
                   constraints: BoxConstraints(minHeight: 120, minWidth: 130),
@@ -61,7 +59,7 @@ class _ProdBoxState extends State<ProdBox> {
         ),
         Align(
           child: Text(
-            widget.prodBoxModel.price,
+            widget.produtoModel.price,
             style: TextStyle(
                 fontSize: 17,
                 color: Theme.of(context).accentColor,
@@ -74,7 +72,29 @@ class _ProdBoxState extends State<ProdBox> {
             constraints: BoxConstraints(maxWidth: 150),
             alignment: Alignment.center,
             child: Text(
-              widget.prodBoxModel.name,
+              widget.produtoModel.title,
+              style: TextStyle(fontSize: 17),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )),
+        Container(
+            constraints: BoxConstraints(maxWidth: 150),
+            alignment: Alignment.center,
+            child: Text(
+              widget.produtoModel.filters['tipo'] == null
+                  ? ''
+                  : widget.produtoModel.filters['tipo'],
+              style: TextStyle(fontSize: 17),
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+            )),
+        Container(
+            constraints: BoxConstraints(maxWidth: 150),
+            alignment: Alignment.center,
+            child: Text(
+              widget.produtoModel.filters['class'] == null
+                  ? ''
+                  : widget.produtoModel.filters['class'],
               style: TextStyle(fontSize: 17),
               maxLines: 4,
               overflow: TextOverflow.ellipsis,

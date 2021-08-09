@@ -1,9 +1,10 @@
-import 'package:Zmarket/category/categories.dart';
-import 'package:Zmarket/category/category_model.dart';
-import 'package:Zmarket/functionalities/filter_drop_down.dart';
+import 'package:Zmarket/database.dart';
 import 'package:Zmarket/lista_compras.dart';
+import 'package:Zmarket/produtos/produto_class.dart';
+import 'package:Zmarket/produtos/produtos_grid.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../addprod_listabtn.dart';
 
@@ -13,6 +14,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class MyHomePage extends StatefulWidget {
   final user = FirebaseAuth.instance.currentUser!;
+  final databaseReference = FirebaseDatabase.instance.reference();
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -21,7 +23,14 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = "";
   var _current = 0;
   final CarouselController _controller = CarouselController();
+  List<ProdutoModel> _models = [];
+
   String paisController = "All";
+  Future<List<ProdutoModel>> x() async {
+    List<ProdutoModel> x = await getAllProdutos('bebidas/vinhos/');
+    return x;
+  }
+
   Future _showCriarLista() async {
     await showDialog(
       context: context,
@@ -191,10 +200,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: MaterialButton(
-                    onPressed: () {
-                      _showCriarLista();
-                      //print(shop["Vinhos"]![0]["title"]);
-                      //print(getCategoryModels(shop, 'Vinhos'));
+                    onPressed: () async {
+                      //_showCriarLista();
+                      //print(getAllProdutos());
+                      List<ProdutoModel> x =
+                          await getAllProdutos('produtos/bebidas/vinhos/')
+                              .then((value) {
+                        setState(() {
+                          _models = value;
+                        });
+                        return _models;
+                      });
+                      print(_models);
                     },
                     color: Color.fromRGBO(31, 192, 5, 1),
                     textColor: Colors.white,
@@ -219,41 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
             endIndent: 20,
           )),
 
-          //
-          //// categories
-          /////
-          ///
-          ///
-          ///
-          ////button to go back
-          SliverToBoxAdapter(
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Filter(
-                filterValue: paisController,
-                filterText: "Pais",
-                filterItems: ['All', 'Argentina', 'Chile'],
-                fun: (newvalue) {
-                  setState(() {
-                    paisController = newvalue;
-                  });
-                }),
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {},
-            ),
-          ])),
-
-          SliverPadding(
-            padding: EdgeInsets.fromLTRB(40, 10, 40, 30),
-            sliver: Categorias(
-              categotyModels: getCategoryModels(
-                data: shop,
-                category: "Vinhos",
-                country: paisController,
-              ),
-            ),
-          )
+          ProdutosGrid(produtomodels: _models)
         ]));
   }
 }
