@@ -131,113 +131,116 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         //bottomNavigationBar: TabBare(),
         backgroundColor: Theme.of(context).primaryColor,
-        body: CustomScrollView(slivers: [
-          //
-          //main appbar
-          //
-          //Zappbar(),
-          //
-          //Carousel
-          //
-          SliverToBoxAdapter(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 30),
-                  child: CarouselSlider(
-                    carouselController: _controller,
-                    options: CarouselOptions(
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current = index;
-                            //print(_current);
-                          });
-                        },
-                        viewportFraction: 0.9,
-                        enableInfiniteScroll: false,
-                        height: 180),
-                    items: getAllListinhas(posts).map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Padding(
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              child: ListaCompras(i.nome, i.cart, posts, () {
-                                setState(() {});
-                              }));
-                        },
-                      );
-                    }).toList(),
-                  ))),
-          //
-          // Carousel dots
-          //
-          SliverToBoxAdapter(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: posts.keys.map((list) {
-                    int index = posts.keys.toList().indexOf(list);
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: 12.0,
-                          height: 12.0,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 2.0),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: _current == index
-                                  ? Colors.purple
-                                  : Colors.black),
-                        );
-                      },
-                    );
-                  }).toList())),
-          //
-          // Add list button
-          //
-          SliverList(
-              delegate: SliverChildListDelegate([
-            Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                  child: MaterialButton(
-                    onPressed: () async {
-                      //_showCriarLista();
-                      //print(getAllProdutos());
-                      List<ProdutoModel> x =
-                          await getAllProdutos('produtos/bebidas/vinhos/')
-                              .then((value) {
-                        setState(() {
-                          _models = value;
-                        });
-                        return _models;
-                      });
-                      print(_models);
-                    },
-                    color: Color.fromRGBO(31, 192, 5, 1),
-                    textColor: Colors.white,
-                    child: Icon(
-                      Icons.add,
-                      size: 50,
-                    ),
-                    shape: CircleBorder(),
-                  ),
-                ))
-          ])),
+        body: _models.length == 0
+            ? CustomScrollView(slivers: [
+                //
+                //main appbar
+                //
+                //Zappbar(),
+                //
+                //Carousel
+                //
+                SliverToBoxAdapter(
+                    child: Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        child: CarouselSlider(
+                          carouselController: _controller,
+                          options: CarouselOptions(
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current = index;
+                                  //print(_current);
+                                });
+                              },
+                              viewportFraction: 0.9,
+                              enableInfiniteScroll: false,
+                              height: 180),
+                          items: getAllListinhas(posts).map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child:
+                                        ListaCompras(i.nome, i.cart, posts, () {
+                                      setState(() {});
+                                    }));
+                              },
+                            );
+                          }).toList(),
+                        ))),
+                //
+                // Carousel dots
+                //
+                SliverToBoxAdapter(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: posts.keys.map((list) {
+                          int index = posts.keys.toList().indexOf(list);
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                width: 12.0,
+                                height: 12.0,
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 2.0),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: _current == index
+                                        ? Colors.purple
+                                        : Colors.black),
+                              );
+                            },
+                          );
+                        }).toList())),
+                //
+                // Add list button
+                //
+                SliverList(
+                    delegate: SliverChildListDelegate([
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        child: MaterialButton(
+                          onPressed: () async {
+                            //_showCriarLista();
+                            //print(getAllProdutos());
+                            List<ProdutoModel> x =
+                                await getAllProdutos('produtos/bebidas/vinhos/')
+                                    .then((value) {
+                              setState(() {
+                                _models = value;
+                              });
+                              return _models;
+                            });
+                            print(_models);
+                          },
+                          color: Color.fromRGBO(31, 192, 5, 1),
+                          textColor: Colors.white,
+                          child: Icon(
+                            Icons.add,
+                            size: 50,
+                          ),
+                          shape: CircleBorder(),
+                        ),
+                      ))
+                ])),
 
-          //
-          //Divider
-          //
-          SliverToBoxAdapter(
-              child: Divider(
-            color: Theme.of(context).accentColor,
-            height: 20,
-            thickness: 5,
-            indent: 20,
-            endIndent: 20,
-          )),
-
-          ProdutosGrid(produtomodels: _models)
-        ]));
+                //
+                //Divider
+                //
+                SliverToBoxAdapter(
+                    child: Divider(
+                  color: Theme.of(context).accentColor,
+                  height: 20,
+                  thickness: 5,
+                  indent: 20,
+                  endIndent: 20,
+                )),
+              ])
+            : CustomScrollView(
+                slivers: [ProdutosGrid(produtomodels: _models)]));
   }
 }
 
