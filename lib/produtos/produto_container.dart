@@ -22,10 +22,12 @@ class _ProdutoContainerState extends State<ProdutoContainer> {
               alignment: AlignmentDirectional.center,
               children: [
                 Container(
-                  child: Image(
-                    image: AssetImage(widget.produtoModel.image),
-                    height: 85,
-                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(18.0),
+                      child: Image(
+                        image: AssetImage(widget.produtoModel.image),
+                        height: 85,
+                      )),
                   constraints: BoxConstraints(minHeight: 120, minWidth: 130),
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -59,7 +61,7 @@ class _ProdutoContainerState extends State<ProdutoContainer> {
         ),
         Align(
           child: Text(
-            widget.produtoModel.price,
+            r"R$ " + widget.produtoModel.price,
             style: TextStyle(
                 fontSize: 17,
                 color: Theme.of(context).accentColor,
@@ -69,7 +71,6 @@ class _ProdutoContainerState extends State<ProdutoContainer> {
           alignment: Alignment.center,
         ),
         Container(
-            constraints: BoxConstraints(maxWidth: 150),
             alignment: Alignment.center,
             child: Text(
               widget.produtoModel.title,
@@ -78,7 +79,6 @@ class _ProdutoContainerState extends State<ProdutoContainer> {
               overflow: TextOverflow.ellipsis,
             )),
         Container(
-            constraints: BoxConstraints(maxWidth: 150),
             alignment: Alignment.center,
             child: Text(
               widget.produtoModel.filters['tipo'] == null
@@ -89,7 +89,15 @@ class _ProdutoContainerState extends State<ProdutoContainer> {
               overflow: TextOverflow.ellipsis,
             )),
         Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            child: Text(
+          widget.produtoModel.filters['grape'] == null
+              ? ''
+              : widget.produtoModel.filters['grape'],
+          style: TextStyle(fontSize: 17),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )),
+        Container(
             alignment: Alignment.center,
             child: Text(
               widget.produtoModel.filters['class'] == null

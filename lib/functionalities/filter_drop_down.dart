@@ -43,10 +43,14 @@ class _FilterState extends State<Filter> {
           items:
               widget.filterItems.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            );
+                value: value,
+                child: SizedBox(
+                  width: 80,
+                  child: Text(value,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                ));
           }).toList(),
         ),
       ],

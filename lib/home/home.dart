@@ -1,6 +1,5 @@
 import 'package:Zmarket/home/profile.dart';
 import 'package:Zmarket/home/home_page.dart';
-import 'package:Zmarket/search/wine_search.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,12 +11,8 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     MyHomePage(),
-    WineSelect(),
-    Center(
-        child: Text(
-      'Em Desenvolvimento...',
-      style: TextStyle(fontSize: 30),
-    )),
+    Center(child: Text('In Development')),
+    Center(child: Text('In Development')),
     Scaffold(
       body: Profile(),
     )
@@ -52,16 +47,16 @@ class _HomeState extends State<Home> {
             }, //_children[_currentIndex]
             body: _children[_currentIndex]),
         Positioned(
-            top: 70,
+            top: 50,
             right: 10,
             child: Container(
-                constraints: BoxConstraints(minHeight: 80, minWidth: 80),
+                constraints: BoxConstraints(minHeight: 60, minWidth: 60),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).accentColor,
                 ),
                 child: Material(
-                    color: Theme.of(context).accentColor,
+                    color: Colors.green,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.0),
                     ),

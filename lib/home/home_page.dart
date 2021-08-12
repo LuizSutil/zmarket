@@ -1,7 +1,9 @@
+import 'package:Zmarket/cat_box.dart';
+import 'package:Zmarket/cat_box_model.dart';
 import 'package:Zmarket/database.dart';
 import 'package:Zmarket/lista_compras.dart';
 import 'package:Zmarket/produtos/produto_class.dart';
-import 'package:Zmarket/produtos/produtos_grid.dart';
+import 'package:Zmarket/search/wine_search.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -20,15 +22,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _loading = false;
+  var _filterSelect = "All";
+  var _category = "All";
   var text = "";
   var _current = 0;
   final CarouselController _controller = CarouselController();
   List<ProdutoModel> _models = [];
 
-  String paisController = "All";
-  Future<List<ProdutoModel>> x() async {
-    List<ProdutoModel> x = await getAllProdutos('bebidas/vinhos/');
-    return x;
+  void x(String initfilter) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => WineSelect(
+                  models: _models,
+                  initFilter: initfilter,
+                )));
   }
 
   Future _showCriarLista() async {
@@ -131,8 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         //bottomNavigationBar: TabBare(),
         backgroundColor: Theme.of(context).primaryColor,
-        body: _models.length == 0
-            ? CustomScrollView(slivers: [
+        body: _loading
+            ? Center(child: CircularProgressIndicator())
+            : CustomScrollView(slivers: [
                 //
                 //main appbar
                 //
@@ -204,17 +214,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                         child: MaterialButton(
                           onPressed: () async {
-                            //_showCriarLista();
+                            _showCriarLista();
                             //print(getAllProdutos());
-                            List<ProdutoModel> x =
-                                await getAllProdutos('produtos/bebidas/vinhos/')
-                                    .then((value) {
-                              setState(() {
-                                _models = value;
-                              });
-                              return _models;
-                            });
-                            print(_models);
                           },
                           color: Color.fromRGBO(31, 192, 5, 1),
                           textColor: Colors.white,
@@ -238,9 +239,92 @@ class _MyHomePageState extends State<MyHomePage> {
                   indent: 20,
                   endIndent: 20,
                 )),
-              ])
-            : CustomScrollView(
-                slivers: [ProdutosGrid(produtomodels: _models)]));
+                SliverToBoxAdapter(
+                    child: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    setState(() {
+                      _category = "All";
+                      _filterSelect = "All";
+                    });
+                  },
+                )),
+                SliverToBoxAdapter(
+                    child: _category == "All"
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                                Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: CatBox(
+                                        fun: () {
+                                          setState(() {
+                                            _category = "Bebidas";
+                                          });
+                                        },
+                                        catboxModel: CatBoxModel(
+                                            category: 'Adega',
+                                            icon: Icon(Icons.local_bar)))),
+                              ])
+                        : _filterSelect == "All"
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: CatBox(
+                                          fun: () => {},
+                                          catboxModel: CatBoxModel(
+                                              category: 'Destilados',
+                                              icon: Icon(Icons.local_bar)))),
+                                  CatBox(
+                                      fun: () => {},
+                                      catboxModel: CatBoxModel(
+                                          category: 'Cervejas',
+                                          icon: Icon(Icons.sports_bar))),
+                                  Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: CatBox(
+                                          fun: () {
+                                            setState(() {
+                                              _filterSelect = "Vinhos";
+                                            });
+                                          },
+                                          catboxModel: CatBoxModel(
+                                              category: 'Vinhos',
+                                              icon: Icon(Icons.wine_bar))))
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: CatBox(
+                                          fun: () => {x('Argentina')},
+                                          catboxModel: CatBoxModel(
+                                              category: 'Vinhos Tinto',
+                                              icon: Icon(Icons.wine_bar)))),
+                                  CatBox(
+                                      fun: () => {},
+                                      catboxModel: CatBoxModel(
+                                          category: 'Vinhos Rose',
+                                          icon: Icon(Icons.wine_bar))),
+                                  Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: CatBox(
+                                          fun: () => {},
+                                          catboxModel: CatBoxModel(
+                                              category: 'Vinhos Brancos',
+                                              icon: Icon(Icons.wine_bar))))
+                                ],
+                              ))
+              ]));
   }
 }
 
