@@ -1,4 +1,4 @@
-import 'package:Zmarket/utilities/googleBtn.dart';
+import 'package:Zmarket/widgets/google_btn.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
           ),
           Padding(
               padding: EdgeInsets.fromLTRB(0, 10, 0, 40),
-              child: Text('Suas Compras de um jeito fácil',
+              child: Text('Um app sobre você, e suas compras',
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontSize: 25,

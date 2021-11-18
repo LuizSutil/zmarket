@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         title: 'Z_Market',
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch().copyWith(
-                secondary: Color.fromRGBO(33, 20, 68, 1),
-                primary: Color.fromRGBO(239, 234, 232, 1))),
+                secondary: Color.fromRGBO(115, 103, 240, 1),
+                primary: Colors.white)),
         home: StreamerPage(),
         navigatorObservers: [
           FirebaseAnalyticsObserver(analytics: analytics),
