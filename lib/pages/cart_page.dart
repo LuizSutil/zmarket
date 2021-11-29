@@ -63,8 +63,22 @@ class _CartPageState extends State<CartPage> {
       return total;
     }
 
-    void check() {
-      print(totalPrice());
+    void deleteProduct(index) {
+      if (listas['Rancho do Mês']['cart'].length > 1) {
+        setState(() {
+          widget.cartLocal.cart.removeAt(index);
+          listas['Rancho do Mês']['cart'].removeAt(index);
+        });
+      } else {
+        setState(() {
+          listas[widget.cartLocal.nome]!['cart']
+              .add({'item': 'Manekin', 'amount': 1, 'subcat': 'none'});
+          widget.cartLocal.cart
+              .add(ItemModel(item: 'Manekin', count: 1, subcat: 'none'));
+          widget.cartLocal.cart.removeAt(index);
+          listas['Rancho do Mês']['cart'].removeAt(index);
+        });
+      }
     }
 
     return WillPopScope(
@@ -309,14 +323,8 @@ class _CartPageState extends State<CartPage> {
                                                         ),
                                                         onPressed: () {
                                                           setState(() {
-                                                            widget
-                                                                .cartLocal.cart
-                                                                .removeAt(
-                                                                    index);
-                                                            listas['Rancho do Mês']
-                                                                    ['cart']
-                                                                .removeAt(
-                                                                    index);
+                                                            deleteProduct(
+                                                                index);
                                                           });
                                                         },
                                                         color: Colors.red,
@@ -412,9 +420,7 @@ class _CartPageState extends State<CartPage> {
                       padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          check();
-                        },
+                        onTap: () {},
                         child: Ink(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
