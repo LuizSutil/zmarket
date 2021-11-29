@@ -1,21 +1,23 @@
+import 'package:Zmarket/models/listinha_model.dart';
+import 'package:Zmarket/pages/cart_page.dart';
+import 'package:Zmarket/utilities/db_json.dart';
 import 'package:flutter/material.dart';
 
 class ListaCompras extends StatefulWidget {
-  final String nomeLista;
-  final List<dynamic> produtos;
-  final Map<String, Map<String, Object>> posts;
+  final ListinhaModel lista;
+
   final Function callback;
-  ListaCompras(this.nomeLista, this.produtos, this.posts, this.callback);
+  ListaCompras({required this.lista, required this.callback});
 
   @override
   _ListaComprasState createState() => _ListaComprasState();
 }
 
 class _ListaComprasState extends State<ListaCompras> {
-  deleteLista() {
-    widget.posts.remove(widget.nomeLista);
-    widget.callback();
-  }
+  // deleteLista() {
+  //   listas.remove(widget.nomeLista);
+  //   widget.callback();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,12 @@ class _ListaComprasState extends State<ListaCompras> {
           child: InkWell(
               splashColor: Theme.of(context).colorScheme.primary,
               onTap: () {
-                print('clicked listinha!');
+                ////////////
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CartPage(cartLocal: widget.lista)));
               },
               child: Row(children: [
                 Expanded(
@@ -38,7 +45,7 @@ class _ListaComprasState extends State<ListaCompras> {
                     children: [
                       Padding(
                           padding: EdgeInsets.fromLTRB(20, 25, 0, 0),
-                          child: Text(widget.nomeLista,
+                          child: Text(widget.lista.nome,
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -50,45 +57,37 @@ class _ListaComprasState extends State<ListaCompras> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                    widget.produtos.length >= 1
-                                        ? widget.produtos[0]
+                                    widget.lista.cart.length >= 1
+                                        ? widget.lista.cart[0].item == 'Manekin'
+                                            ? 'Add Produtos para visualizar!'
+                                            : widget.lista.cart[0].item
                                         : '',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white)),
                                 Text(
-                                    widget.produtos.length >= 2
-                                        ? widget.produtos[1]
+                                    widget.lista.cart.length >= 2
+                                        ? widget.lista.cart[1].item.toString()
                                         : '',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white)),
                                 Text(
-                                    widget.produtos.length >= 3
-                                        ? widget.produtos[2]
+                                    widget.lista.cart.length >= 3
+                                        ? widget.lista.cart[2].item.toString()
                                         : '',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white)),
                                 Text(
-                                    widget.produtos.length >= 4
-                                        ? widget.produtos[3]
+                                    widget.lista.cart.length >= 4
+                                        ? widget.lista.cart[3].item.toString()
                                         : '',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white)),
                                 Text(
-                                    widget.produtos.length >= 5
-                                        ? widget.produtos[4]
+                                    widget.lista.cart.length >= 5
+                                        ? widget.lista.cart[4].item.toString()
                                         : '',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white)),
-                                Padding(
-                                  child: Text(
-                                    widget.produtos.length >= 1
-                                        ? "..."
-                                        : 'Add Produtos para visualizar!',
-                                    style: TextStyle(
-                                        fontSize: 13, color: Colors.white),
-                                  ),
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                )
                               ]))
                     ],
                   ),

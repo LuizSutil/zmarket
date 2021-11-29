@@ -1,4 +1,6 @@
+import 'package:Zmarket/models/listinha_model.dart';
 import 'package:Zmarket/pages/sub_category.dart';
+import 'package:Zmarket/utilities/db_json.dart';
 import 'package:Zmarket/utilities/screensize_reducers.dart';
 import 'package:Zmarket/widgets/listas/list_displayer.dart';
 import 'package:flutter/material.dart';
@@ -93,8 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Padding(
                           padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                           child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                               color: Colors.white,
                               child: InkWell(
+                                borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                       context,
@@ -126,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 0,
                 crossAxisCount: 2,
-              ))
+              )),
         ],
       ),
     );

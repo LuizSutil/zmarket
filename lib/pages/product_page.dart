@@ -1,17 +1,37 @@
+import 'package:Zmarket/models/produtos_model.dart';
 import 'package:Zmarket/utilities/screensize_reducers.dart';
+import 'package:Zmarket/widgets/counter_item.dart';
 import 'package:Zmarket/widgets/z_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Produto extends StatefulWidget {
-  final String produto;
-  Produto({required this.produto});
+  final ProdutoModel individualProduto;
+  Produto({required this.individualProduto});
   @override
   _ProdutoState createState() => _ProdutoState();
 }
 
 class _ProdutoState extends State<Produto> {
+  var _quantity = 1;
   @override
   Widget build(BuildContext context) {
+    var finalPrice =
+        (_quantity * widget.individualProduto.price).toStringAsFixed(2);
+
+    minusQuant() {
+      setState(() {
+        _quantity == 1 ? _quantity = 1 : _quantity--;
+        print(_quantity);
+      });
+    }
+
+    addQuant() {
+      setState(() {
+        _quantity++;
+        print(_quantity);
+      });
+    }
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: Stack(clipBehavior: Clip.none, children: [
@@ -19,7 +39,7 @@ class _ProdutoState extends State<Produto> {
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) {
                 return <Widget>[Zappbar()];
-              }, //_children[_currentIndex]
+              },
               body: CustomScrollView(slivers: [
                 SliverToBoxAdapter(
                     child: Column(
@@ -28,7 +48,9 @@ class _ProdutoState extends State<Produto> {
                     Padding(
                         padding: EdgeInsets.only(top: 20, left: 15),
                         child: Text(
-                          'Bebidas > Águas',
+                          widget.individualProduto.category +
+                              " > " +
+                              widget.individualProduto.subcategory,
                           style: TextStyle(
                               fontSize: 17, fontStyle: FontStyle.italic),
                         )),
@@ -36,93 +58,59 @@ class _ProdutoState extends State<Produto> {
                         padding: EdgeInsets.only(top: 40, bottom: 40),
                         child: Center(
                             child: Image.asset(
-                          'assets/products/agua-crystal-500ml.jpg',
-                          height: screenHeight(context) * 0.2,
+                          widget.individualProduto.image,
+                          height: screenHeight(context) * 0.3,
                         ))),
-                    Center(child: Text(widget.produto)),
-                    Center(child: Text(r"R$ 1,55")),
-                    Center(child: Text(r"500 ml")),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    Center(
+                        child: Text(widget.individualProduto.name,
+                            //  mostrar quantidade no nome do produto
+                            // +
+                            //     " x" +
+                            //     _quantity.toString()
+                            style: TextStyle(
+                                fontSize: 23,
+                                color:
+                                    Theme.of(context).colorScheme.secondary))),
+                    Center(
+                        child: Text(
+                            r"R$ " +
+                                (widget.individualProduto.price * _quantity)
+                                    .toStringAsFixed(2),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold))),
+                    Center(
+                        child: Text(widget.individualProduto.amount +
+                            " " +
+                            widget.individualProduto.unit)),
+                    Padding(
+                        padding: EdgeInsets.only(top: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            InkWell(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10)),
-                                onTap: () {},
-                                child: Ink(
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10))),
-                                  width: 60,
-                                  height: 35,
-                                  child: Center(
-                                      child: Text(
-                                    "-",
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white),
-                                  )),
-                                )),
-                            Container(
-                              width: 30,
-                              height: 35,
-                              child: Center(
-                                  child: Text(
-                                "0",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
-                              )),
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                            InkWell(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10)),
-                                onTap: () {},
-                                child: Ink(
-                                  width: 60,
-                                  height: 35,
-                                  child: Center(
-                                      child: Text(
-                                    "+",
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white),
-                                  )),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                          bottomRight: Radius.circular(10))),
-                                )),
+                            ItemCounter(
+                                add: addQuant,
+                                minus: minusQuant,
+                                quantity: _quantity),
+                            SizedBox(
+                                width: 50,
+                                child: ElevatedButton(
+                                    child: Image.asset(
+                                        'assets/svgs/plus-lista.png'),
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                        primary:
+                                            Color.fromRGBO(255, 106, 57, 1)))),
+                            SizedBox(
+                                width: 110,
+                                child: ElevatedButton(
+                                    child: Image.asset(
+                                        'assets/svgs/plus-carrinho.png'),
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                        primary:
+                                            Color.fromRGBO(255, 106, 57, 1)))),
                           ],
-                        ),
-                        SizedBox(
-                            width: 50,
-                            child: ElevatedButton(
-                                child:
-                                    Image.asset('assets/svgs/plus-lista.png'),
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color.fromRGBO(255, 106, 57, 1)))),
-                        SizedBox(
-                            width: 110,
-                            child: ElevatedButton(
-                                child: Image.asset(
-                                    'assets/svgs/plus-carrinho.png'),
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color.fromRGBO(255, 106, 57, 1)))),
-                      ],
-                    )
+                        ))
                   ],
                 ))
               ]))

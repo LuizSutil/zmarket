@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
-
-var listas = {
+Map<String, dynamic> listas = {
   'Rancho do Mês': {
     'nome': 'Rancho do Mês',
     'cart': [
-      "Leite",
-      "Ovos",
-      "Macarrão",
-      "Arroz",
-      "Queijo Prato Mussarela",
-    ]
+      {'item': "Água Mineral Crystal", 'amount': 1, 'subcat': 'Água'},
+      {'item': "Água Mineral daguarda", 'amount': 1, 'subcat': 'Água'},
+      {'item': "Água Mineral Outra", 'amount': 1, 'subcat': 'Água'}
+    ],
   },
-  'Festa do Vinho': {'nome': 'Festa do Vinho', 'cart': []}
+  'Festa do Vinho': {
+    'nome': 'Festa do Vinho',
+    'cart': [
+      {'item': "Manekin", 'amount': 1, 'subcat': 'none'}
+    ]
+  }
 };
 
 var categories = {
@@ -98,15 +99,42 @@ var categories = {
 };
 
 var produtos = {
-  'Água': [
-    {'Água Mineral Crystal': 'assets/products/agua-crystal-500ml.jpg'},
-    {
-      'Água Mineral yoergsergsoerigosergoe':
-          'assets/svgs/bebidas/water-bottle.png'
+  'Café': {},
+  'Chá': {},
+  'Champagne': {},
+  'Destilado': {},
+  'Energético': {},
+  'Bebidas de Esporte': {},
+  'Refrigerante': {},
+  'Sucos': {},
+  'Vinhos': {},
+  'Água': {
+    'Água Mineral Crystal': {
+      'name': 'Água Mineral Crystal',
+      'image': 'assets/products/agua-crystal-500ml.jpg',
+      'price': 1.55,
+      'amount': '500',
+      'unit': 'ml',
+      'category': "Bebidas",
+      'subcategory': "Água"
     },
-    {
-      'Água Mineral zsergsoergnsoergnerogsnre':
-          'assets/svgs/bebidas/water-bottle.png'
+    'Água Mineral daguarda': {
+      'name': 'Água Mineral daguarda',
+      'image': 'assets/svgs/bebidas/water-bottle.png',
+      'price': 1.25,
+      'amount': '500',
+      'unit': 'ml',
+      'category': "Bebidas",
+      'subcategory': "Água"
+    },
+    'Água Mineral Outra': {
+      'name': 'Água Mineral Outra',
+      'image': 'assets/svgs/bebidas/water-bottle.png',
+      'price': 1.12,
+      'amount': '500',
+      'unit': 'ml',
+      'category': "Bebidas",
+      'subcategory': "Água"
     }
-  ]
+  }
 };

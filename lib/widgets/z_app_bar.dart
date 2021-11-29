@@ -4,7 +4,7 @@ class Zappbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text("Test",
+      title: Text("Zmarket",
           style: TextStyle(
             color: Theme.of(context).colorScheme.secondary,
             fontSize: 30.0,

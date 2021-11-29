@@ -1,4 +1,5 @@
-import 'package:Zmarket/pages/produtos.dart';
+import 'package:Zmarket/models/produtos_model.dart';
+import 'package:Zmarket/pages/produtos_page.dart';
 import 'package:Zmarket/widgets/z_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:Zmarket/utilities/db_json.dart';
@@ -49,19 +50,28 @@ class _SubCategoryState extends State<SubCategory> {
                     sliver: SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
+                          Map<String, dynamic> produtoList = produtos[
+                                  categories[widget.subcategory]![index]
+                                      .keys
+                                      .toString()
+                                      .replaceAll("(", "")
+                                      .replaceAll(")", "")]!
+                              .cast<String, dynamic>();
+
                           return InkWell(
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Produtos(
-                                              produtos: categories[widget
-                                                      .subcategory]![index]
-                                                  .keys
-                                                  .toString()
-                                                  .replaceAll("(", "")
-                                                  .replaceAll(")", ""),
-                                            )));
+                                            category: categories[
+                                                    widget.subcategory]![index]
+                                                .keys
+                                                .toString()
+                                                .replaceAll("(", "")
+                                                .replaceAll(")", ""),
+                                            subcatProdutos:
+                                                getAllProdutos(produtoList))));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
