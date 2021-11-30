@@ -1,3 +1,4 @@
+import 'package:Zmarket/deprecated/database.dart';
 import 'package:Zmarket/login/login.dart';
 import 'package:Zmarket/login/streamer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,11 @@ class GoogleSignInProvider extends ChangeNotifier {
         idToken: googleAuth.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      final _x = await FirebaseAuth.instance.signInWithCredential(credential);
+      if (_x.additionalUserInfo!.isNewUser) {
+        createDbAccount(_x.user!.uid.toString());
+      }
+      ;
     } catch (e) {
       print(e.toString());
     }

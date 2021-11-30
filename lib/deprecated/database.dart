@@ -45,3 +45,28 @@ Future<void> sendPurchase(String route, carrinho) async {
 
   return databaseReference.child(route).set(_data);
 }
+
+Future<void> createDbAccount(String userid) async {
+  Map<String, dynamic> _data = {
+    "Address": {
+      "Bairro": "Centro",
+      "Cidade": "Criciúma",
+      "Complemento": "Apto 704",
+      "Numero": 80,
+      "PaÃ­s": "Brasil",
+      "Rua": "Rua Melvin Jones"
+    },
+    "Listas": {
+      "Rancho do Mês": {
+        "Água Mineral Crystal": {
+          "amount": 1,
+          "item": "Água Mineral Crystal",
+          "subcat": "Água"
+        }
+      }
+    },
+    "Pedidos": {}
+  };
+
+  return databaseReference.child('/users/' + userid).set(_data);
+}

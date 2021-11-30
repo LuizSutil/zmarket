@@ -41,11 +41,7 @@ class _ProfileState extends State<Profile> {
             style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           )),
       ElevatedButton.icon(
-          onPressed: () async {
-            // var _x = await getCarrinho('users/' + widget.user.uid + '/Listas');
-            // print(_x);
-            print(widget.user);
-          },
+          onPressed: () async {},
           icon: Icon(
             Icons.logout,
             color: Theme.of(context).colorScheme.secondary,
