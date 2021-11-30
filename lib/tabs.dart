@@ -1,5 +1,8 @@
 //import 'package:Zmarket/home/profile.dart';
 //import 'package:Zmarket/home/home_page.dart';
+import 'package:Zmarket/deprecated/logout.dart';
+import 'package:Zmarket/deprecated/produto_model_deprecated.dart';
+import 'package:Zmarket/deprecated/wine_page.dart';
 import 'package:Zmarket/pages/home_page.dart';
 import 'package:Zmarket/widgets/z_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +14,14 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
+
   final List<Widget> _children = [
     MyHomePage(),
-    Center(child: Text('In Development')),
-    Center(child: Text('In Development')),
+    WineSelect(
+      models: [],
+      initFilter: 'Argentina',
+    ),
+    Profile(),
     //Scaffold(
     //  body: Profile(),
     //)
@@ -44,13 +51,14 @@ class _TabsState extends State<Tabs> {
         currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Pesquisa",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Pesquisa",
+          ),
+
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.lightbulb),
           //   label: "Inspiracao",

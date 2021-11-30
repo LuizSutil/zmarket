@@ -27,7 +27,7 @@ class _ProdutosState extends State<Produtos> {
               insetPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
               title: Text.rich(TextSpan(text: 'Adicionar', children: <TextSpan>[
                 TextSpan(
-                    text: ' $produto ',
+                    text: " " + produto.name + " ",
                     style: TextStyle(color: Colors.purple[600])),
                 TextSpan(text: 'a qual lista?')
               ])),
@@ -39,6 +39,7 @@ class _ProdutosState extends State<Produtos> {
                       int _amount = 0;
                       int _index = 0;
                       String _subcat = "";
+
                       for (var map in listas['$lista']!['cart']) {
                         if (map.containsKey("item")) {
                           if (map['item'] == produto.name) {
@@ -51,7 +52,6 @@ class _ProdutosState extends State<Produtos> {
                       }
 
                       //print(listas['$lista']!['cart'][_index]);
-                      print(_amount);
                       if (_exists) {
                         listas['$lista']!['cart'].removeAt(_index);
 
@@ -60,22 +60,22 @@ class _ProdutosState extends State<Produtos> {
                           'amount': _amount + 1,
                           'subcat': _subcat
                         });
+                        if (listas[lista]!['cart'][0]['item'] == 'Manekin') {
+                          listas[lista]!['cart'].removeAt(0);
+                        }
                       } else {
                         listas['$lista']!['cart'].add({
                           'item': produto.name,
                           'amount': 1,
                           'subcat': produto.subcategory
                         });
+                        if (listas[lista]!['cart'][0]['item'] == 'Manekin') {
+                          listas[lista]!['cart'].removeAt(0);
+                        }
                         ;
                       }
                       print(listas['$lista']!['cart']);
 
-                      // _exists ? listas['$lista']!['cart'].pop([_index]
-                      // listas['$lista']!['cart'].add({
-                      //   'item': 'Água Mineral Crystal',
-                      //   'amount': 1,
-                      //   'subcat': 'Água'
-                      // });
                       setState(() {});
                       Navigator.pop(context);
                     })

@@ -1,6 +1,8 @@
+import 'package:Zmarket/deprecated/database.dart';
 import 'package:Zmarket/models/listinha_model.dart';
 import 'package:Zmarket/models/produtos_model.dart';
 import 'package:Zmarket/pages/home_page.dart';
+import 'package:Zmarket/pages/notinha_page.dart';
 import 'package:Zmarket/tabs.dart';
 import 'package:Zmarket/utilities/db_json.dart';
 import 'package:Zmarket/utilities/screensize_reducers.dart';
@@ -47,7 +49,29 @@ class _CartPageState extends State<CartPage> {
 
     void removeAmount(ItemModel itemModelzera) {
       setState(() {
-        itemModelzera.sub(1);
+        int _amount = 0;
+        int _index = 0;
+        String _subcat = "";
+        for (var map in listas[widget.cartLocal.nome]!['cart']) {
+          if (map.containsKey("item")) {
+            if (map['item'] == itemModelzera.item) {
+              _amount = map['amount'];
+              _subcat = map['subcat'];
+              _index = listas[widget.cartLocal.nome]!['cart'].indexOf(map);
+            }
+          }
+        }
+
+        if (_amount > 1) {
+          setState(() {
+            listas[widget.cartLocal.nome]!['cart'].removeAt(_index);
+            listas[widget.cartLocal.nome]!['cart'].insert(_index, {
+              'item': itemModelzera.item,
+              'amount': _amount - 1,
+              'subcat': _subcat
+            });
+          });
+        }
       });
     }
 
@@ -420,7 +444,20 @@ class _CartPageState extends State<CartPage> {
                       padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () async {
+                          if (widget.cartLocal.cart[0].item == 'Manekin') {
+                            {}
+                          } else {
+                            sendPurchase(
+                                'users/xtWPCnN7saNVwJhQ9JpHyCPRqHT2/Pedidos',
+                                listas[widget.cartLocal.nome]);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Notinha(price: totalPrice())));
+                          }
+                        },
                         child: Ink(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),

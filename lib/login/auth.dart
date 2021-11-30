@@ -1,3 +1,5 @@
+import 'package:Zmarket/login/login.dart';
+import 'package:Zmarket/login/streamer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -29,10 +31,12 @@ class GoogleSignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future logout() async {
+  Future logout(context) async {
     try {
       await FirebaseAuth.instance.signOut();
       await _googleSignIn.disconnect();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => StreamerPage()));
     } catch (e) {
       print(e.toString());
     }

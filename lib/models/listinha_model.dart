@@ -15,10 +15,6 @@ class ItemModel {
     count > 1 ? count = count - value : count = 1;
   }
 
-  // void set minusAmount(count) {
-  //   count = count - 1;
-  // }
-
   ItemModel({required this.item, required this.count, required this.subcat});
 }
 

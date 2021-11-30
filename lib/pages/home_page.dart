@@ -14,7 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var carrouselState = 0;
   List listateste = [
     "Laticínios e frios",
-    "Condimentos e temperos",
+    "Condimentos",
     "Grãos",
     "Snacks",
     "Bebidas",

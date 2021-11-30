@@ -1,3 +1,4 @@
+import 'package:Zmarket/login/login.dart';
 import 'package:Zmarket/tabs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class StreamerPage extends StatelessWidget {
             } else if (snapshot.hasError) {
               return Center(child: Text('Something went wrong!'));
             } else {
-              return Center(child: Text('Something went wrong!'));
+              return Center(child: LoginPage());
             }
             // else {
             //   return IntroPage(); //return login page

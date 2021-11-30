@@ -4,7 +4,7 @@ Map<String, dynamic> listas = {
     'cart': [
       {'item': "Água Mineral Crystal", 'amount': 1, 'subcat': 'Água'},
       {'item': "Água Mineral daguarda", 'amount': 1, 'subcat': 'Água'},
-      {'item': "Água Mineral Outra", 'amount': 1, 'subcat': 'Água'}
+      {'item': "Água Mineral Voss", 'amount': 1, 'subcat': 'Água'}
     ],
   },
   'Festa do Vinho': {
@@ -28,20 +28,20 @@ var categories = {
     {'Sucos': 'assets/svgs/bebidas/orange-juice.png'},
     {'Vinhos': 'assets/svgs/bebidas/wine.png'},
   ],
-  // 'Condimentos e temperos': [
-  //   {'Açucar'},
-  //   {'Azeite'},
-  //   {'Enlatados'},
-  //   {'Farinha'},
-  //   {'Fermento'},
-  //   {'Ketchup'},
-  //   {'Molho de Tomate'},
-  //   {'Mustarda e Maionese'},
-  //   {'Pimentas'},
-  //   {'Sal'},
-  //   {'Temperos'},
-  //   {'Vinagre'}
-  // ],
+  'Condimentos': [
+    {'Açucar': 'assets/svgs/condimentos/acucar.png'},
+    //{'Azeite':'assets/svgs/condimentos/acucar.png'},
+    {'Enlatados': 'assets/svgs/condimentos/enlatados.png'},
+    {'Farinha': 'assets/svgs/condimentos/farinha.png'},
+    //{'Fermento':'assets/svgs/condimentos/acucar.png'},
+    {'Ketchup': 'assets/svgs/condimentos/ketchup.png'},
+    {'Molho de Tomate': 'assets/svgs/condimentos/tomatosauce.png'},
+    {'Mustarda e Maionese': 'assets/svgs/condimentos/mayonnaise.png'},
+    {'Pimentas': 'assets/svgs/condimentos/pimentas.png'},
+    {'Sal': 'assets/svgs/condimentos/sal.png'},
+    {'Temperos': 'assets/svgs/condimentos/temperos.png'},
+    //{'Vinagre':'assets/svgs/condimentos/acucar.png'}
+  ],
   // "Grãos": [
   //   {'Arroz'},
   //   {'Cereais'},
@@ -99,6 +99,15 @@ var categories = {
 };
 
 var produtos = {
+  'Açucar': {},
+  'Enlatados': {},
+  'Farinha': {},
+  'Ketchup': {},
+  'Molho de Tomate': {},
+  'Mustarda e Maionese': {},
+  'Pimentas': {},
+  'Sal': {},
+  'Temperos': {},
   'Café': {},
   'Chá': {},
   'Champagne': {},
@@ -120,17 +129,17 @@ var produtos = {
     },
     'Água Mineral daguarda': {
       'name': 'Água Mineral daguarda',
-      'image': 'assets/svgs/bebidas/water-bottle.png',
+      'image': 'assets/products/agua-daguarda-500ml.jpg',
       'price': 1.25,
       'amount': '500',
       'unit': 'ml',
       'category': "Bebidas",
       'subcategory': "Água"
     },
-    'Água Mineral Outra': {
-      'name': 'Água Mineral Outra',
-      'image': 'assets/svgs/bebidas/water-bottle.png',
-      'price': 1.12,
+    'Água Mineral Voss': {
+      'name': 'Água Mineral Voss',
+      'image': 'assets/products/voss-500ml.jpg',
+      'price': 19.99,
       'amount': '500',
       'unit': 'ml',
       'category': "Bebidas",
