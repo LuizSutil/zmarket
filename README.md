@@ -2,6 +2,8 @@
 
 A MVP for the Ztelluz team to show to possible investors.
 
+E pra ensinar a amabzita
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
