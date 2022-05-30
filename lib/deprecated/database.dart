@@ -53,7 +53,7 @@ Future<void> createDbAccount(String userid) async {
       "Cidade": "Criciúma",
       "Complemento": "Apto 704",
       "Numero": 80,
-      "PaÃ­s": "Brasil",
+      "País": "Brasil",
       "Rua": "Rua Melvin Jones"
     },
     "Listas": {
