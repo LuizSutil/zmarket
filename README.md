@@ -1,6 +1,6 @@
 # Zmarket MVP app
 
-A MVP for the Ztelluz team to show to possible investors.
+A MVP for the Ztelluz team to show people
 
 E pra ensinar a amabzita
 
